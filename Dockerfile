@@ -51,6 +51,10 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 
+# Copy entrypoint
+COPY --chown=www:www ./docker-entrypoint.sh /opt/docker-entrypoint.sh
+RUN ["chmod", "+x", "/opt/docker-entrypoint.sh"]
+
 # Install node packages
 RUN npm install
 
@@ -59,4 +63,5 @@ USER www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]
+
+ENTRYPOINT ["/opt/docker-entrypoint.sh"]
