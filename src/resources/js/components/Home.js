@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Products from './Products'
 
-function Home() {
-    return (
-        <div>
-            <Navbar/>
-            <div className="flex-center position-ref height-expand container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">InnosPizza</div>
+class Home extends Component {
 
-                            <div className="card-body">Ready to order!</div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            cartitems: []
+        };
+    }
+
+
+    render() {
+        return (
+            <div>
+                <Navbar/>
+                <div className="position-ref height-expand container">
+                    <div className="row justify-content-center">
+                        <div className="col-md-12">
+                            <h1>Welcome to InnosPizza!</h1>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center">
+                        <div className="col-md-12">
+                            <Products/>
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
-            <Footer/>
-        </div>
-    );
+        );
+    }
 }
 
 export default Home;
