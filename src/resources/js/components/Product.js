@@ -9,11 +9,17 @@ class Product extends Component {
     }
 
     render() {
+        let image_url = 'img/' + this.props.data.image_url;
+
         return (
-            <div>
-                <div className="mt-4">
-                    <div className="row">
-                        {this.props.name}
+            <div class="card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2">
+                <img className="card-img-top product-image" src={image_url} alt={this.props.data.name}/>
+                <div className="card-body">
+                    <div className="card-title product-price">
+                        {this.props.data.usd_price}
+                    </div>
+                    <div className="card-text product-description">
+                        {this.props.data.description}
                     </div>
                 </div>
             </div>

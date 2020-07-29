@@ -25,10 +25,8 @@ class Products extends Component {
         let products = this.state.products;
 
         return (
-            <div>
-                <div className="container mt-4">
-                    {products.map(product => <Product key={product.id} name={product.name} addItem={this.addItem} />)}
-                </div>
+            <div className="col-12 product-container">
+                {products.map(product => <Product key={product.id} data={product} addItem={this.addItem} />)}
             </div>
         )
     }

@@ -17,17 +17,11 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <img src='img/background.png' alt="heart-pizza-bg" class="bg" />
                 <Navbar/>
-                <div className="position-ref height-expand container">
-                    <div className="row justify-content-center">
-                        <div className="col-md-12">
-                            <h1>Welcome to InnosPizza!</h1>
-                        </div>
-                    </div>
-                    <div className="row justify-content-center">
-                        <div className="col-md-12">
-                            <Products/>
-                        </div>
+                <div className="position-ref container">
+                    <div className="justify-content-center">
+                        <Products/>
                     </div>
                 </div>
                 <Footer/>
