@@ -6,15 +6,24 @@ class Products extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            products: []
         };
     }
 
+    componentDidMount() {
+        axios.get('/api/products').then(response=>{
+            this.setState({ products: response.data })
+        }).catch(error=>{
+            alert("Error "+error)
+        })
+    }
+
     addItem() {
-        console.log('asdasd');
     }
 
     render() {
-        let products = [{'id': 1, 'name': 'Margherita'}, {'id': 2, 'name': 'Napolitana'}, {'id': 3, 'name': 'Fugazzeta'}]
+        let products = this.state.products;
+
         return (
             <div>
                 <div className="container mt-4">

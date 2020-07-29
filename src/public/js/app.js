@@ -65936,7 +65936,7 @@ var Home = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      cartitems: []
+      cartItems: []
     };
     return _this;
   }
@@ -66114,37 +66114,41 @@ var Products = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Products);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      products: []
+    };
     return _this;
   }
 
   _createClass(Products, [{
-    key: "addItem",
-    value: function addItem() {
-      console.log('asdasd');
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios.get('/api/products').then(function (response) {
+        _this2.setState({
+          products: response.data
+        });
+      })["catch"](function (error) {
+        alert("Error " + error);
+      });
     }
+  }, {
+    key: "addItem",
+    value: function addItem() {}
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var products = [{
-        'id': 1,
-        'name': 'Margherita'
-      }, {
-        'id': 2,
-        'name': 'Napolitana'
-      }, {
-        'id': 3,
-        'name': 'Fugazzeta'
-      }];
+      var products = this.state.products;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container mt-4"
       }, products.map(function (product) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Product__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: product.id,
           name: product.name,
-          addItem: _this2.addItem
+          addItem: _this3.addItem
         });
       })));
     }
