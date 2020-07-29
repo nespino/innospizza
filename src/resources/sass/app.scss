@@ -72,6 +72,15 @@ footer {
   color:#000;
 }
 
+footer a {
+  color: #000;
+}
+
+footer a:hover {
+  color: #ff0000;
+  text-decoration: none;
+}
+
 .height-expand {
   height: 80vh;
 }

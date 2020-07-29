@@ -65873,7 +65873,9 @@ var Footer = function Footer() {
     className: "page-footer font-small bg-blue"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-copyright text-center py-3"
-  }, "\xA9 2020 Powered by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Nahuel Espi\xF1o ")));
+  }, "\xA9 2020 Powered by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/nespino"
+  }, "Nahuel Espi\xF1o"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Footer);
