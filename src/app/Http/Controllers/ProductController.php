@@ -83,7 +83,7 @@ class ProductController extends Controller
         $product->name = $request->name();
         $product->description = $request->description();
         $product->usd_price = $request->usd_price();
-        $product->amount = $request->amount();
+        $product->image_url = $request->image_url();
 
         $product->save();
 
