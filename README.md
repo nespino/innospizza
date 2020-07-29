@@ -7,7 +7,12 @@ InnosPizza Challenge - Not giving client name to minimize cheating
 - 1st night: 3hs to get up a docker stack with laravel through nginx and mysql
 - 2nd night: 2hs to get up laravel API and first model
 - 2nd night: 2hs to get up React working along with laravel
+- 3rd night: 2hs documentation reading
 - 3rd night: 1hs to improve build process, provide installation steps and configure entrypoint
+- 3rd night: 4hs React frontend design, visual fx and implementation
+- Last day: 1hs Image search and edition
+- Last day: 2hs for responsiveness details
+
 
 ## Prerequisites
 
