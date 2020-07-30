@@ -1,6 +1,6 @@
 # Run database migrations
-php artisan migrate:fresh
+yes | php artisan migrate:fresh
 
 # Run seeds
-php artisan db:seed
+yes | php artisan db:seed
 
