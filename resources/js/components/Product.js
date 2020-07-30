@@ -17,7 +17,8 @@ class Product extends Component {
                 <img className="card-img-top product-image" src={image_url} alt={this.props.data.name}/>
                 <div className="card-body">
                     <div className="card-title product-price">
-                        {this.props.data.usd_price}
+                        { this.props.currency=='USD' && '$' + this.props.data.usd_price }
+                        { this.props.currency=='Euro' && '\u20AC' + (this.props.data.usd_price / this.props.euroToDolar).toFixed(2) }
                     </div>
                     <div className="card-text product-description">
                         {this.props.data.description}

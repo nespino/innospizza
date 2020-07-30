@@ -138,6 +138,10 @@ footer a:hover {
   text-align: right;
 }
 
+.navbar .cart-button-container > div {
+  margin: auto;
+}
+
 .product-container {
   text-align: center;
 }
@@ -294,3 +298,17 @@ a {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.currency-switch-container .react-switch-bg {
+  color: #dcc;
+  font-weight: bold;
+  font-family: 'Michroma', 'sans-serif';
+  line-height: 25px;
+  padding: 0px 9px;
+  border-radius: 100px;
+  transition: 1s !important;
+  font-size: 9pt;
+}
+
+.currency-switch-container .react-switch-bg > div {
+  margin-right: 4px;
+}

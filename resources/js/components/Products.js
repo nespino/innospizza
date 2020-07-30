@@ -27,7 +27,14 @@ class Products extends Component {
 
         return (
             <div className="col-12 product-container">
-                {products.map(product => <Product key={product.id} data={product} addItem={this.addItem} />)}
+                {products.map(product =>
+                    <Product
+                        key={product.id}
+                        data={product}
+                        addItem={this.addItem}
+                        currency={this.props.currency}
+                        euroToDolar={this.props.euroToDolar}
+                    />)}
             </div>
         )
     }

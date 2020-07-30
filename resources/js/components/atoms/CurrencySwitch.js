@@ -2,27 +2,35 @@ import React, { Component } from "react";
 import Switch from "react-switch";
 
 class CurrencySwitch extends Component {
-    constructor() {
-        super();
-        this.state = { checked: false };
+    constructor(props) {
+        super(props);
+        this.state = { checked: true };
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            checked: this.props.currency == 'USD'
+        });
     }
 
     handleChange(checked) {
         this.setState({ checked });
+        this.props.onChange(checked ? 'USD' : 'Euro')
     }
 
     render() {
         return (
-            <div className="row">
-                <div className="col-2">
-                    <span>USD</span>
-                </div>
-                <div className="col-4">
-                    <Switch onChange={this.handleChange} checked={this.state.checked} />
-                </div>
-                <div className="col-2">
-                    <span>Euro</span>
+            <div className="">
+                <div className="col-4 currency-switch-container">
+                    <Switch
+                        onChange={this.handleChange}
+                        checked={this.state.checked}
+                        uncheckedIcon={'Euro'}
+                        checkedIcon={'USD'}
+                        width={80}
+                        offColor={"#26339f"}
+            />
                 </div>
             </div>
         );
