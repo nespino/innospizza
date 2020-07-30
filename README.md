@@ -1,6 +1,8 @@
 # InnosPizza
 InnosPizza Challenge - Not giving client name to minimize cheating
 
+## Demo
+https://innospizza.herokuapp.com/
 
 ## Dev Times
 
