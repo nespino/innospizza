@@ -12,7 +12,9 @@ InnosPizza Challenge - Not giving client name to minimize cheating
 - 3rd night: 4hs React frontend design, visual fx and implementation
 - Last day: 1hs Image search and edition
 - Last day: 2hs for responsiveness details
-
+- Last day: 4hs working with Heroku
+- Last night: 1hs applying unit tests for API
+- Last night: 2hs code improvement
 
 ## Prerequisites
 
