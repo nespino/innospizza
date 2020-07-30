@@ -6,6 +6,12 @@
 
         <title>InnosPizza</title>
 
+        <meta name="description" content="InnosPizza! The most delicious vegan pizza you ever tasted">
+        <meta property="og:title" content="INNOS Pizza" />
+        <meta property="og:url" content="https://innospizza.herokuapp.com/" />
+        <meta property="og:description" content="Come and buy the best pizzas you'll ever taste">
+        <meta property="og:image" content="{{asset('img/logo.png')}}">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
