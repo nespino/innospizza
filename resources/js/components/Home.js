@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Products from './Products'
+import Checkout from './Checkout'
 
 import url from '../url/url'
 
@@ -13,10 +14,13 @@ class Home extends Component {
         this.state = {
             currency: 'USD',
             euroToDolar: 0,
-            products: []
+            products: [],
+            showCheckout: false,
         };
         this.currencyChange = this.currencyChange.bind(this);
         this.amountChange = this.amountChange.bind(this);
+        this.showCheckout = this.showCheckout.bind(this);
+        this.hideCheckout = this.hideCheckout.bind(this);
     }
 
     async componentDidMount() {
@@ -39,6 +43,18 @@ class Home extends Component {
         }).catch(error=>{
             alert("Error "+error)
         });
+    }
+
+    hideCheckout() {
+        this.setState({
+            showCheckout: false
+        })
+    }
+
+    showCheckout(){
+        this.setState({
+            showCheckout: true
+        })
     }
 
     currencyChange(currency) {
@@ -67,6 +83,7 @@ class Home extends Component {
                 <Navbar
                     currency={this.state.currency}
                     currencyChange={this.currencyChange}
+                    showCheckout={this.showCheckout}
                 />
                 <div className="position-ref container">
                     <div className="justify-content-center">
@@ -79,6 +96,16 @@ class Home extends Component {
                     </div>
                 </div>
                 <Footer/>
+
+                <Checkout
+                    showCheckout={this.state.showCheckout}
+                    hideCheckout={this.hideCheckout}
+                    products={this.state.products}
+                    currency={this.state.currency}
+                    euroToDolar={this.state.euroToDolar}
+                    amountChange={this.amountChange}
+                />
+
             </div>
         );
     }

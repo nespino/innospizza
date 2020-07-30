@@ -11279,3 +11279,16 @@ a {
   transform: scale(1.1);
 }
 
+.close-checkout {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.remove-items {
+  width: 25px;
+  cursor: pointer;
+}
+

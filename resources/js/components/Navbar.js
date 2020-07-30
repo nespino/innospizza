@@ -31,7 +31,7 @@ class Navbar extends Component {
                         currency={this.props.currency}
                         onChange={this.props.currencyChange}
                     />
-                    <button className={`btn my-2 my-sm-0 btn-${button_mode}`} type="submit">
+                    <button className={`btn my-2 my-sm-0 btn-${button_mode}`} onClick={this.props.showCheckout}>
                         <img src={currency_img} className="checkout-btn"/>
                     </button>
                 </div>
