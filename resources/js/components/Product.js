@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import url from '../url/url'
+
 
 class Product extends Component {
 
@@ -25,8 +27,9 @@ class Product extends Component {
                         {this.props.data.description}
                     </div>
                     {this.props.data.amount > 0 &&
-                        <span className="product-items-counter" onClick={(e) => this.props.removeItem(this.props.data, e)}
-                            title="Click to remove from your order">{this.props.data.amount}</span>
+                            <span className="product-items-counter hvr-grow-shadow" onClick={(e) => this.props.removeItem(this.props.data, e)}
+                                title="Click to remove from your order">{this.props.data.amount}</span>
+
                     }
                 </div>
             </div>
