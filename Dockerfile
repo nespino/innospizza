@@ -1,10 +1,10 @@
 FROM php:7.3-fpm
 
 # Copy composer.lock and composer.json
-COPY src/composer.lock src/composer.json /var/www/
+COPY composer.lock composer.json /var/www/
 
 # Copy package.json 
-COPY src/package.json /var/www
+COPY package.json /var/www
 
 # Set working directory
 WORKDIR /var/www
