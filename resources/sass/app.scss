@@ -312,3 +312,19 @@ a {
 .currency-switch-container .react-switch-bg > div {
   margin-right: 4px;
 }
+
+.product-items-counter {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  background-color: #e1274f;
+  height: 33px;
+  width: 33px;
+  border-radius: 100px;
+  line-height: 32px;
+  color: #ffecf2;
+  box-shadow: 1px 2px 5px 0px rgb(125, 71, 10);
+  font-weight: bold;
+  font-size: 13pt;
+  text-align: center;
+}

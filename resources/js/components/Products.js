@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
 import Product from './Product'
-import url from '../url/url'
 
 class Products extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            products: []
         };
+        this.addItem = this.addItem.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
 
-    async componentDidMount() {
-        axios.get(`${url}api/products`).then(response=>{
-            this.setState({ products: response.data })
-        }).catch(error=>{
-            alert("Error "+error)
-        })
+    addItem(which) {
+        this.props.amountChange(which, 1);
     }
 
-    addItem() {
+    removeItem(which) {
+        this.props.amountChange(which, -2);
     }
 
     render() {
-        let products = this.state.products;
+        let products = this.props.products;
 
         return (
             <div className="col-12 product-container">
@@ -31,9 +28,10 @@ class Products extends Component {
                     <Product
                         key={product.id}
                         data={product}
-                        addItem={this.addItem}
+                        removeItem={this.removeItem}
                         currency={this.props.currency}
                         euroToDolar={this.props.euroToDolar}
+                        addItem={this.addItem}
                     />)}
             </div>
         )

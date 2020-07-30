@@ -4,6 +4,8 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import Products from './Products'
 
+import url from '../url/url'
+
 class Home extends Component {
 
     constructor(props) {
@@ -11,9 +13,10 @@ class Home extends Component {
         this.state = {
             currency: 'USD',
             euroToDolar: 0,
-            cartItems: []
+            products: []
         };
         this.currencyChange = this.currencyChange.bind(this);
+        this.amountChange = this.amountChange.bind(this);
     }
 
     async componentDidMount() {
@@ -30,11 +33,29 @@ class Home extends Component {
             // TODO: Save the value in db, periodically update it.
             that.setState({ euroToDolar: 1.1725 })
         });
+
+        axios.get(`${url}api/products`).then(response=>{
+            this.setState({ products: response.data })
+        }).catch(error=>{
+            alert("Error "+error)
+        });
     }
 
     currencyChange(currency) {
         this.setState({
             currency: currency
+        })
+    }
+
+    amountChange(product, amount) {
+        let products = this.state.products.map(function(p) {
+            if (p==product) {
+                p.amount = parseInt(p.amount || 0) + parseInt(amount);
+            }
+            return p;
+        })
+        this.setState({
+            products: products
         })
     }
 
@@ -49,7 +70,12 @@ class Home extends Component {
                 />
                 <div className="position-ref container">
                     <div className="justify-content-center">
-                        <Products currency={this.state.currency} euroToDolar={this.state.euroToDolar} />
+                        <Products
+                            currency={this.state.currency}
+                            euroToDolar={this.state.euroToDolar}
+                            products={this.state.products}
+                            amountChange={this.amountChange}
+                        />
                     </div>
                 </div>
                 <Footer/>
