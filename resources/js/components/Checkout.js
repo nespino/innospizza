@@ -18,28 +18,21 @@ class Checkout extends Component {
         let total = products.reduce((total, product) => total + product.amount * product.usd_price, 0);
         total = (this.props.currency=='USD' ? total : (total / this.props.euroToDolar)).toFixed(2);
         return (
-            <div>
+            <div className="checkout-modal">
                 <ReactModal isOpen={this.props.showCheckout}>
                     <img src="img/x.png" className="close-checkout" onClick={this.props.hideCheckout} />
-                    <div>
-                        <table>
-                            <tr>
-                                <td colspan="3">Order</td>
-                            </tr>
-                            {products.map(product =>
-                                <OrderItem
-                                    key={product.id}
-                                    data={product}
-                                    removeItems={this.removeItems}
-                                    currency={this.props.currency}
-                                    euroToDolar={this.props.euroToDolar}
-                                />)}
-                            <tr></tr>
-                            <tr>
-                                <td colspan="3"></td>
-                                <td>{ total }</td>
-                            </tr>
-                        </table>
+                    <img src="img/logo.png" className="checkout-logo" />
+                    <div className="checkout-content">
+                        <h2>Order</h2>
+                        {products.map(product =>
+                            <OrderItem
+                                key={product.id}
+                                data={product}
+                                removeItems={this.removeItems}
+                                currency={this.props.currency}
+                                euroToDolar={this.props.euroToDolar}
+                            />)}
+                        <div className="order-total"> { total } </div>
                     </div>
                 </ReactModal>
             </div>

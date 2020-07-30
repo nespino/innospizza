@@ -15,8 +15,7 @@ class Product extends Component {
         let image_url = `${url}img/${this.props.data.image_url}`;
 
         return (
-            <div className="card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2" title="Click to order!"
-                    onClick={(e) => this.props.addItem(this.props.data, e)}>
+            <div className="card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2">
                 <img className="card-img-top product-image" src={image_url} alt={this.props.data.name}/>
                 <div className="card-body">
                     <div className="card-title product-price">
@@ -29,8 +28,10 @@ class Product extends Component {
                     {this.props.data.amount > 0 &&
                             <span className="product-items-counter hvr-grow-shadow" onClick={(e) => this.props.removeItem(this.props.data, e)}
                                 title="Click to remove from your order">{this.props.data.amount}</span>
-
                     }
+                </div>
+                <div className="card-bottom" onClick={(e) => this.props.addItem(this.props.data, e)} title="Click to order!">
+                    <span>Add to cart</span>
                 </div>
             </div>
         )

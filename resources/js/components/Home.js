@@ -32,7 +32,6 @@ class Home extends Component {
             let euroToDolar = response.rates['USD'];
             that.setState({ euroToDolar: euroToDolar })
         }).catch(function(e){
-            console.log(e);
             // Fallback to hardcoded
             // TODO: Save the value in db, periodically update it.
             that.setState({ euroToDolar: 1.1725 })

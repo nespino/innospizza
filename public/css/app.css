@@ -11020,7 +11020,7 @@ footer a:hover {
 
 .product-card {
   width: 250px;
-  height: 480px;
+  height: 440px;
   padding: 15px;
   border-radius: 10px;
   display: inline-block;
@@ -11172,7 +11172,6 @@ a {
   background-color: #fff;
   background-opacity: 0.5;
   max-width: 100vw;
-  max-height: 120vh;
   justify-content: center;
   align-items: center;
   color: #723;
@@ -11224,6 +11223,7 @@ a {
   border-radius: 100px;
   transition: 1s !important;
   font-size: 9pt;
+  margin-bottom: 10px;
 }
 
 .currency-switch-container .react-switch-bg > div {
@@ -11244,6 +11244,7 @@ a {
   font-weight: bold;
   font-size: 13pt;
   text-align: center;
+  z-index: 5;
 }
 
 .no-select {
@@ -11290,5 +11291,48 @@ a {
 .remove-items {
   width: 25px;
   cursor: pointer;
+}
+
+.checkout-logo {
+  margin: auto;
+  max-width: 150px;
+}
+
+.ReactModal__Content {
+  text-align: center;
+}
+
+.checkout-content {
+  text-align: center;
+}
+
+.checkout-content > table {
+  display: inline-table;
+}
+
+.order-list img {
+  max-width: 100px;
+  margin: 10px;
+}
+
+.card-bottom {
+  position: absolute;
+  bottom: 0px;
+  margin: auto;
+  text-align: center;
+  background-color: #7de643;
+  color: #352424;
+  display: block;
+  width: 100%;
+  left: 0;
+  border-radius: 0px 0px 10px 10px;
+  height: 35px;
+  padding-top: 7px;
+}
+
+.card-bottom span {
+  margin: auto;
+  display: inline-block;
+  font-family: "Michroma", "sans-serif";
 }
 

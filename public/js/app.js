@@ -69761,15 +69761,20 @@ var Checkout = /*#__PURE__*/function (_Component) {
         return total + product.amount * product.usd_price;
       }, 0);
       total = (this.props.currency == 'USD' ? total : total / this.props.euroToDolar).toFixed(2);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkout-modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
         isOpen: this.props.showCheckout
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/x.png",
         className: "close-checkout",
         onClick: this.props.hideCheckout
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        colspan: "3"
-      }, "Order")), products.map(function (product) {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/logo.png",
+        className: "checkout-logo"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkout-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Order"), products.map(function (product) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: product.id,
           data: product,
@@ -69777,9 +69782,9 @@ var Checkout = /*#__PURE__*/function (_Component) {
           currency: _this2.props.currency,
           euroToDolar: _this2.props.euroToDolar
         });
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        colspan: "3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, total))))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "order-total"
+      }, " ", total, " "))));
     }
   }]);
 
@@ -69917,9 +69922,8 @@ var Home = /*#__PURE__*/function (_Component) {
                     euroToDolar: euroToDolar
                   });
                 })["catch"](function (e) {
-                  console.log(e); // Fallback to hardcoded
+                  // Fallback to hardcoded
                   // TODO: Save the value in db, periodically update it.
-
                   that.setState({
                     euroToDolar: 1.1725
                   });
@@ -70177,11 +70181,7 @@ var Product = /*#__PURE__*/function (_Component) {
 
       var image_url = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_1__["default"], "img/").concat(this.props.data.image_url);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2",
-        title: "Click to order!",
-        onClick: function onClick(e) {
-          return _this2.props.addItem(_this2.props.data, e);
-        }
+        className: "card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "card-img-top product-image",
         src: image_url,
@@ -70198,7 +70198,13 @@ var Product = /*#__PURE__*/function (_Component) {
           return _this2.props.removeItem(_this2.props.data, e);
         },
         title: "Click to remove from your order"
-      }, this.props.data.amount)));
+      }, this.props.data.amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-bottom",
+        onClick: function onClick(e) {
+          return _this2.props.addItem(_this2.props.data, e);
+        },
+        title: "Click to order!"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Add to cart")));
     }
   }]);
 
@@ -70272,7 +70278,7 @@ var Products = /*#__PURE__*/function (_Component) {
   }, {
     key: "removeItem",
     value: function removeItem(which) {
-      this.props.amountChange(which, -2);
+      this.props.amountChange(which, -1);
     }
   }, {
     key: "render",
@@ -70458,13 +70464,37 @@ var Checkout = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var price = this.props.currency == 'USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDolar).toFixed(2);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, this.props.data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, this.props.data.amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, (this.props.data.amount * price).toFixed(2), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row order-list"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: 'img/' + this.props.data.image_url
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-7"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "product-name"
+      }, this.props.data.name), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.data.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/x.png",
         className: "remove-items",
         onClick: function onClick(e) {
           return _this2.props.removeItems(_this2.props.data, e);
         }
-      })));
+      }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, " ", this.props.data.price, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, " ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, " ", (this.props.data.amount * price).toFixed(2), " "))));
     }
   }]);
 

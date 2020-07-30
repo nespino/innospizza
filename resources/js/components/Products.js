@@ -16,7 +16,7 @@ class Products extends Component {
     }
 
     removeItem(which) {
-        this.props.amountChange(which, -2);
+        this.props.amountChange(which, -1);
     }
 
     render() {
