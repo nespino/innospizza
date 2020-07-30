@@ -15,6 +15,7 @@ InnosPizza Challenge - Not giving client name to minimize cheating
 - Last day: 4hs working with Heroku
 - Last night: 1hs applying unit tests for API
 - Last night: 2hs code improvement
+- Last night: 1hs working with Heroku
 
 ## Prerequisites
 
