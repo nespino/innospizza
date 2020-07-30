@@ -80,10 +80,10 @@ class ProductController extends Controller
             'name' => 'required',
             'usd_price' => 'required',
         ]);
-        $product->name = $request->name();
-        $product->description = $request->description();
-        $product->usd_price = $request->usd_price();
-        $product->image_url = $request->image_url();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->usd_price = $request->usd_price;
+        $product->image_url = $request->image_url;
 
         $product->save();
 
