@@ -17,16 +17,19 @@ class Home extends Component {
     }
 
     async componentDidMount() {
-        axios.get('https://api.exchangeratesapi.io/latest').then(response=>{
-            console.log(response);
-            let euroToDolar = response.rates['usd'];
-            console.log(euroToDolar);
-            this.setState({ euroToDolar: euroToDolar })
-        }).catch(error=>{
+        let that = this;
+
+        fetch("https://api.exchangeratesapi.io/latest?base=EUR&symbols=USD")
+            .then(response => response.json())
+        .then(response => {
+            let euroToDolar = response.rates['USD'];
+            that.setState({ euroToDolar: euroToDolar })
+        }).catch(function(e){
+            console.log(e);
             // Fallback to hardcoded
             // TODO: Save the value in db, periodically update it.
-            this.setState({ euroToDolar: 1.1725 })
-        })
+            that.setState({ euroToDolar: 1.1725 })
+        });
     }
 
     currencyChange(currency) {
