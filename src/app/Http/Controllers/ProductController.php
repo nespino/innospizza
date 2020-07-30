@@ -41,8 +41,10 @@ class ProductController extends Controller
             'usd_price' => 'required',
         ]);
         $product = Product::create($request->all());
-        return response()->json(['message'=> 'Product succesfully created',
-            'product' => $product]);
+        return response()
+            ->json(['message'=> 'Product succesfully created',
+            'product' => $product]
+        )->setStatusCode(201);
     }
 
     /**
@@ -87,10 +89,11 @@ class ProductController extends Controller
 
         $product->save();
 
-        return response()->json([
+        return response()
+            ->json([
             'message' => 'Product succesfully updated',
             'product' => $product
-        ]);
+        ])->setStatusCode(202);
     }
 
     /**
