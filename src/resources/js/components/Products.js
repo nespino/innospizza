@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Product from './Product'
+import url from '../url/url'
 
 class Products extends Component {
 
@@ -10,8 +11,8 @@ class Products extends Component {
         };
     }
 
-    componentDidMount() {
-        axios.get('/api/products').then(response=>{
+    async componentDidMount() {
+        axios.get(`${url}api/products`).then(response=>{
             this.setState({ products: response.data })
         }).catch(error=>{
             alert("Error "+error)

@@ -17,7 +17,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <img src='img/background.png' alt="heart-pizza-bg" class="bg" />
+                <img src='img/background.png' alt="heart-pizza-bg" className="bg" />
                 <Navbar/>
                 <div className="position-ref container">
                     <div className="justify-content-center">
