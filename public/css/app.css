@@ -11011,7 +11011,7 @@ footer a:hover {
 }
 
 .product-card .product-price {
-  font-size: 3rem;
+  font-size: 2.3rem;
 }
 
 .product-card .product-description {
@@ -11020,7 +11020,7 @@ footer a:hover {
 
 .product-card {
   width: 250px;
-  height: 420px;
+  height: 480px;
   padding: 15px;
   border-radius: 10px;
   display: inline-block;
@@ -11172,7 +11172,7 @@ a {
   background-color: #fff;
   background-opacity: 0.5;
   max-width: 100vw;
-  max-height: 114vh;
+  max-height: 120vh;
   justify-content: center;
   align-items: center;
   color: #723;
