@@ -23,7 +23,6 @@ class Navbar extends Component {
                     </a>
                 </div>
                 <div className="row col-md-6 col-sm-12">
-                    <h1>Welcome to INNOS Pizza!</h1>
                     <h3>All our pizzas are gluten and lactose free with rice flour dough</h3>
                 </div>
                 <div className="row col-md-3 col-sm-12 cart-button-container">

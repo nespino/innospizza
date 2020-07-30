@@ -70099,7 +70099,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
         alt: "logo"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-6 col-sm-12"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to INNOS Pizza!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All our pizzas are gluten and lactose free with rice flour dough")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All our pizzas are gluten and lactose free with rice flour dough")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-3 col-sm-12 cart-button-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_1__["default"], {
         currency: this.props.currency,

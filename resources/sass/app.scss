@@ -226,6 +226,13 @@ div.admin-bg {
   background-color: #fff;
 }
 
+
+@media screen and (min-width: 750px) {
+  .currency-switch-container {
+    margin-bottom: 10px;
+  }
+}
+
 @media screen and (max-width: 1024px) { /* Specific to this particular image */
   img.bg {
     left: 50%;
@@ -308,7 +315,6 @@ a {
   border-radius: 100px;
   transition: 1s !important;
   font-size: 9pt;
-  margin-bottom: 10px;
 }
 
 .currency-switch-container .react-switch-bg > div {
