@@ -11335,6 +11335,10 @@ a {
   padding-top: 10px;
 }
 
+.order-list .subtotal {
+  padding-top: 15px;
+}
+
 .card-bottom {
   position: absolute;
   bottom: 0px;

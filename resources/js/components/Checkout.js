@@ -58,7 +58,7 @@ class Checkout extends Component {
                         </div>
                     </div>
                 </ReactModal>
-                
+
             </div>
         )
     }
