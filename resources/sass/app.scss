@@ -71,6 +71,7 @@ footer {
   background-color: $primary;
   color:#000;
   z-index: 7;
+  border-top: solid 1px #e2a010;
 }
 
 footer a {
@@ -330,12 +331,12 @@ a {
   position: absolute;
   right: 14px;
   bottom: 14px;
-  background-color: #e1274f;
-  height: 33px;
-  width: 33px;
+  background-color: $primary;
+  height: 40px;
+  width: 40px;
   border-radius: 100px;
-  line-height: 34px;
-  color: #ffecf2;
+  line-height: 40px;
+  color: #fefeec;
   box-shadow: 1px 2px 5px 0px rgb(125, 71, 10);
   font-weight: bold;
   font-size: 13pt;
