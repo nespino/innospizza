@@ -103,6 +103,7 @@ class Home extends Component {
                     currency={this.state.currency}
                     euroToDolar={this.state.euroToDolar}
                     amountChange={this.amountChange}
+                    currencyChange={this.currencyChange}
                 />
 
             </div>

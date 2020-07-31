@@ -69705,6 +69705,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./atoms/OrderItem */ "./resources/js/components/atoms/OrderItem.js");
+/* harmony import */ var _atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./atoms/CurrencySwitch */ "./resources/js/components/atoms/CurrencySwitch.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69731,25 +69732,29 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Checkout = /*#__PURE__*/function (_Component) {
   _inherits(Checkout, _Component);
 
   var _super = _createSuper(Checkout);
 
-  function Checkout() {
+  function Checkout(props) {
     var _this;
 
     _classCallCheck(this, Checkout);
 
-    _this = _super.call(this);
-    _this.state = {};
+    _this = _super.call(this, props);
+    _this.state = {
+      showForm: false
+    };
+    _this.removeItems = _this.removeItems.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Checkout, [{
     key: "removeItems",
     value: function removeItems(which) {
-      this.props.amountChange(which, which.amount);
+      this.props.amountChange(which, -1);
     }
   }, {
     key: "render",
@@ -69757,10 +69762,15 @@ var Checkout = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var products = this.props.products;
+      products = products.filter(function (product) {
+        return product.amount > 0;
+      });
       var total = products.reduce(function (total, product) {
         return total + product.amount * product.usd_price;
       }, 0);
       total = (this.props.currency == 'USD' ? total : total / this.props.euroToDolar).toFixed(2);
+      var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
+      var currency_img = "img/checkout_".concat(this.props.currency, ".png");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-modal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -69770,11 +69780,13 @@ var Checkout = /*#__PURE__*/function (_Component) {
         className: "close-checkout",
         onClick: this.props.hideCheckout
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/logo.png",
+        src: "img/logo-transp.png",
         className: "checkout-logo"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "checkout-content"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Order"), products.map(function (product) {
+        className: "checkout-content currency-switch-container row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order"), products.map(function (product) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: product.id,
           data: product,
@@ -69782,9 +69794,22 @@ var Checkout = /*#__PURE__*/function (_Component) {
           currency: _this2.props.currency,
           euroToDolar: _this2.props.euroToDolar
         });
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "order-total"
-      }, " ", total, " "))));
+      }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12 col-md-12 empty-cart"
+      }, "You want more pizza... Please select at least one of them")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "order-total row col-md-6 col-sm-10"
+      }, "Order total: ", total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row col-md-2 col-sm-2 cart-button-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        currency: this.props.currency,
+        onChange: this.props.currencyChange,
+        amountChange: this.props.amountChange
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn my-2 my-sm-0 btn-".concat(button_mode)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: currency_img,
+        className: "checkout-btn"
+      }))))));
     }
   }]);
 
@@ -69813,9 +69838,7 @@ var Footer = function Footer() {
     className: "page-footer font-small bg-blue"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-copyright text-center py-3"
-  }, "\xA9 2020 Powered by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "https://github.com/nespino"
-  }, "Nahuel Espi\xF1o"))));
+  }, "\xA9 2020 Powered by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Innoscripta ")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Footer);
@@ -70011,7 +70034,8 @@ var Home = /*#__PURE__*/function (_Component) {
         products: this.state.products,
         currency: this.state.currency,
         euroToDolar: this.state.euroToDolar,
-        amountChange: this.amountChange
+        amountChange: this.amountChange,
+        currencyChange: this.currencyChange
       }));
     }
   }]);
@@ -70088,7 +70112,7 @@ var Navbar = /*#__PURE__*/function (_Component) {
       var currency_img = "img/checkout_".concat(this.props.currency, ".png");
       var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-        className: "navbar navbar-light"
+        className: "navbar navbar-light currency-switch-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-3 col-sm-12 logo-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -70448,13 +70472,14 @@ var Checkout = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(Checkout);
 
-  function Checkout() {
+  function Checkout(props) {
     var _this;
 
     _classCallCheck(this, Checkout);
 
-    _this = _super.call(this);
+    _this = _super.call(this, props);
     _this.state = {};
+    _this.amountChange = _this.props.amountChange;
     return _this;
   }
 
@@ -70467,21 +70492,21 @@ var Checkout = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row order-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-3"
+        className: "col-sm-4 col-md-2 col-lg-3 col-xg-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: 'img/' + this.props.data.image_url
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-7"
+        className: "col-sm-6 col-md-4 col-lg-7 col-xg-8 text-left product-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
+        className: ""
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "product-name"
       }, this.props.data.name), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
+        className: ""
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.data.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-2"
+        className: "col-sm-2 col-md-4 col-lg-2 col-xg-2 subtotal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
+        className: "remove-items-container"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/x.png",
         className: "remove-items",
@@ -70489,12 +70514,12 @@ var Checkout = /*#__PURE__*/function (_Component) {
           return _this2.props.removeItems(_this2.props.data, e);
         }
       }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, " ", this.props.data.price, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, " ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, " ", (this.props.data.amount * price).toFixed(2), " "))));
+        className: ""
+      }, "Price: ", price, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: ""
+      }, "Amount: ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: ""
+      }, "Subtotal: ", (this.props.data.amount * price).toFixed(2), " "))));
     }
   }]);
 

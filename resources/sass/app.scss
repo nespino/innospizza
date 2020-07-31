@@ -70,6 +70,7 @@ footer {
   width: 100%;
   background-color: $primary;
   color:#000;
+  z-index: 7;
 }
 
 footer a {
@@ -122,23 +123,23 @@ footer a:hover {
   padding: 2% 2% 15%;
 }
 
-.navbar {
+.currency-switch-container {
   background-color: $primary;
   color: #6f0f0f;
   font-family: 'Michroma', 'sans-serif';
 }
 
-.navbar .row {
+.currency-switch-container .row {
   padding: 20px;
   margin: 0px;
 }
 
-.navbar .cart-button-container {
+.currency-switch-container .cart-button-container {
   font-family: 'Nunito', 'sans-serif';
   text-align: right;
 }
 
-.navbar .cart-button-container > div {
+.currency-switch-container .cart-button-container > div {
   margin: auto;
 }
 
@@ -146,7 +147,7 @@ footer a:hover {
   text-align: center;
 }
 
-.navbar .cart-button-container button {
+.currency-switch-container .cart-button-container button {
   margin: auto;
   font-size: 2rem;
   min-width: 120px;
@@ -169,7 +170,7 @@ footer a:hover {
     margin: auto;
   }
 
-  .navbar .cart-button-container {
+  .currency-switch-container .cart-button-container {
     text-align: center;
     width: 100%;
   }
@@ -184,7 +185,7 @@ footer a:hover {
     font-weight: bold;
   }
 
-  .navbar h1, .navbar h3 {
+  .currency-switch-container h1, .navbar h3 {
     text-align: center;
   }
 
@@ -253,9 +254,13 @@ a {
   cursor: pointer;
 }
 
+.card {
+  cursor: default;
+}
+
 /* Hover effect */
 
-.product-card {
+.card.product-card {
   box-shadow: 1px 2px 5px 0px rgba(125,71,10,1) !important;
   background: -moz-linear-gradient(-45deg, #fff 0%, #fff 35%, $primary_alt2 50%, $primary_alt1 70%, $primary_alt3 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(-45deg, #fff 0%,#fff 35%,$primary_alt2 50%,$primary_alt1 70%,$primary_alt3 100%); /* Chrome10-25,Safari5.1-6 */
@@ -269,7 +274,7 @@ a {
   align-items: center;
   color: #723;
   position: relative;
-  cursor: pointer;
+  cursor: default;
   transition: .5s all;
 
   &__img {
@@ -348,7 +353,6 @@ a {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-
 /* Grow Shadow */
 .hvr-grow-shadow {
   display: inline-block;
@@ -385,8 +389,14 @@ a {
   max-width: 150px;
 }
 
+.ReactModalPortal {
+  position: relative;
+  z-index: 10;
+}
+
 .ReactModal__Content {
   text-align: center;
+  background-color: $primary !important;
 }
 
 .checkout-content {
@@ -398,8 +408,16 @@ a {
 }
 
 .order-list img {
-  max-width: 100px;
+  max-width: 120px;
   margin: 10px;
+}
+
+.order-list .product-text {
+  padding-top: 10px;
+}
+
+.order-list .subtotal {
+
 }
 
 .card-bottom {
@@ -413,12 +431,39 @@ a {
   width: 100%;
   left: 0;
   border-radius: 0px 0px 10px 10px;
-  height: 35px;
-  padding-top: 7px;
+  height: 67px;
+  padding-top: 22px;
+  cursor: pointer;
 }
 
 .card-bottom span {
   margin: auto;
   display: inline-block;
   font-family: 'Michroma', 'sans-serif';
+}
+
+.order-total {
+  font-size: 15pt;
+  text-align: right;
+  display: inline;
+}
+
+.empty-cart {
+  min-height: 200px;
+  padding: 20px;
+  font-size: 20pt;
+}
+
+.order-list .product-name {
+  font-size: 15pt;
+}
+
+.remove-items {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+.subtotal {
+  padding-right: 40px;
 }

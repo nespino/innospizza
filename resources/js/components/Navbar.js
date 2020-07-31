@@ -16,7 +16,7 @@ class Navbar extends Component {
         let currency_img = `img/checkout_${this.props.currency}.png`;
         let button_mode = this.props.currency == 'USD' ? 'success' : 'info';
         return (
-            <nav className="navbar navbar-light">
+            <nav className="navbar navbar-light currency-switch-container">
                 <div className="row col-md-3 col-sm-12 logo-container">
                     <a href="/">
                         <img className="logo" src="img/logo-transp.png" alt="logo"/>
