@@ -70414,8 +70414,8 @@ var CurrencySwitch = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_switch__WEBPACK_IMPORTED_MODULE_1___default.a, {
         onChange: this.handleChange,
         checked: this.state.checked,
-        uncheckedIcon: 'Euro',
-        checkedIcon: 'USD',
+        uncheckedIcon: euroIcon,
+        checkedIcon: usdIcon,
         width: 80,
         offColor: "#26339f"
       })));

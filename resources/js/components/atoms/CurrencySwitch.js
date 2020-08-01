@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import Switch from "react-switch";
 
+
+export const euroIcon = (
+    <img src='img/euro.png' />
+);
+
+export const usdIcon = (
+    <img src='img/usd.png' />
+);
+
 class CurrencySwitch extends Component {
     constructor(props) {
         super(props);
@@ -26,8 +35,8 @@ class CurrencySwitch extends Component {
                     <Switch
                         onChange={this.handleChange}
                         checked={this.state.checked}
-                        uncheckedIcon={'Euro'}
-                        checkedIcon={'USD'}
+                        uncheckedIcon={euroIcon}
+                        checkedIcon={usdIcon}
                         width={80}
                         offColor={"#26339f"}
             />

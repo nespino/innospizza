@@ -106,7 +106,7 @@ footer a:hover {
 
 .product-card {
   width: 250px;
-  height: 440px;
+  height: 460px;
   padding: 15px;
   border-radius: 10px;
   display: inline-block;
@@ -398,6 +398,7 @@ a {
 .ReactModal__Content {
   text-align: center;
   background-color: $primary !important;
+  border-radius: 10px;
 }
 
 .checkout-content {
