@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal'
 
+import url from '../../url/url'
+
 class Checkout extends Component {
     constructor (props) {
         super(props);
@@ -13,12 +15,14 @@ class Checkout extends Component {
 
     render () {
         let price = this.props.currency=='USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDolar).toFixed(2);
+        let image_url = `${url}img/products/${this.props.data.image_url}`;
+
         return (
             <div>
                 { true &&
                     <div className="row order-list">
                         <div className="col-sm-4 col-md-2 col-lg-3 col-xg-2">
-                            <img src={ 'img/' + this.props.data.image_url } />
+                            <img src={ image_url } />
                         </div>
                         <div className="col-sm-6 col-md-4 col-lg-7 col-xg-8 text-left product-text">
                             <div className=""> <span className="product-name">{ this.props.data.name }</span> </div>
