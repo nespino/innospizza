@@ -77978,7 +77978,8 @@ var Checkout = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ViewOrder__WEBPACK_IMPORTED_MODULE_2__["default"], {
         products: this.props.products,
         currency: this.props.currency,
-        euroToDollar: this.props.euroToDollar
+        euroToDollar: this.props.euroToDollar,
+        hideCheckout: this.props.hideCheckout
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
         isOpen: this.props.showCheckout && this.state.showForm
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));

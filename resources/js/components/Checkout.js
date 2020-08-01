@@ -33,7 +33,7 @@ class Checkout extends Component {
             <div className="checkout-modal">
                 <ReactModal isOpen={this.props.showCheckout && this.state.showOrderList}>
                     <ViewOrder products={this.props.products} currency={this.props.currency}
-                        euroToDollar={this.props.euroToDollar} />
+                        euroToDollar={this.props.euroToDollar} hideCheckout={this.props.hideCheckout} />
                 </ReactModal>
                 <ReactModal isOpen={this.props.showCheckout && (this.state.showForm)}>
                     <OrderForm />
