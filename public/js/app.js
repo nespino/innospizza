@@ -77905,9 +77905,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./atoms/OrderItem */ "./resources/js/components/atoms/OrderItem.js");
-/* harmony import */ var _atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./atoms/CurrencySwitch */ "./resources/js/components/atoms/CurrencySwitch.js");
-/* harmony import */ var _OrderForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./OrderForm */ "./resources/js/components/OrderForm.js");
+/* harmony import */ var _ViewOrder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ViewOrder */ "./resources/js/components/ViewOrder.js");
+/* harmony import */ var _OrderForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./OrderForm */ "./resources/js/components/OrderForm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -77929,7 +77928,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -77973,59 +77971,17 @@ var Checkout = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
-      var products = this.props.products;
-      products = products.filter(function (product) {
-        return product.amount > 0;
-      });
-      var total = products.reduce(function (total, product) {
-        return total + product.amount * product.usd_price;
-      }, 0);
-      total = (this.props.currency == 'USD' ? total : total / this.props.euroToDolar).toFixed(2);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-modal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
         isOpen: this.props.showCheckout && this.state.showOrderList
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/x.png",
-        className: "close-checkout",
-        onClick: this.props.hideCheckout
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/logo-transp.png",
-        className: "checkout-logo"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "checkout-content currency-switch-container row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order"), products.map(function (product) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: product.id,
-          data: product,
-          removeItems: _this2.removeItems,
-          currency: _this2.props.currency,
-          euroToDolar: _this2.props.euroToDolar
-        });
-      }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 col-md-12 empty-cart"
-      }, "You want more pizza... Please select at least one of them")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "order-total row col-md-6 col-sm-10"
-      }, "Order total: ", total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row col-md-2 col-sm-2 cart-button-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ViewOrder__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        products: this.props.products,
         currency: this.props.currency,
-        onChange: this.props.currencyChange,
-        amountChange: this.props.amountChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn my-2 my-sm-0 btn-".concat(button_mode),
-        onClick: this.enableForm
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/checkout.png",
-        className: "checkout-btn"
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        euroToDollar: this.props.euroToDollar
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
         isOpen: this.props.showCheckout && this.state.showForm
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
 
@@ -78130,7 +78086,7 @@ var Home = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       currency: 'USD',
-      euroToDolar: 0,
+      euroToDollar: 0,
       products: [],
       showCheckout: false
     };
@@ -78156,15 +78112,15 @@ var Home = /*#__PURE__*/function (_Component) {
                 fetch("https://api.exchangeratesapi.io/latest?base=EUR&symbols=USD").then(function (response) {
                   return response.json();
                 }).then(function (response) {
-                  var euroToDolar = response.rates['USD'];
+                  var euroToDollar = response.rates['USD'];
                   that.setState({
-                    euroToDolar: euroToDolar
+                    euroToDollar: euroToDollar
                   });
                 })["catch"](function (e) {
                   // Fallback to hardcoded
                   // TODO: Save the value in db, periodically update it.
                   that.setState({
-                    euroToDolar: 1.1725
+                    euroToDollar: 1.1725
                   });
                 });
                 axios.get("".concat(_url_url__WEBPACK_IMPORTED_MODULE_7__["default"], "api/products")).then(function (response) {
@@ -78241,7 +78197,7 @@ var Home = /*#__PURE__*/function (_Component) {
         className: "justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Products__WEBPACK_IMPORTED_MODULE_5__["default"], {
         currency: this.state.currency,
-        euroToDolar: this.state.euroToDolar,
+        euroToDollar: this.state.euroToDollar,
         products: this.state.products,
         amountChange: this.amountChange
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Checkout__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -78249,7 +78205,7 @@ var Home = /*#__PURE__*/function (_Component) {
         hideCheckout: this.hideCheckout,
         products: this.state.products,
         currency: this.state.currency,
-        euroToDolar: this.state.euroToDolar,
+        euroToDollar: this.state.euroToDollar,
         amountChange: this.amountChange,
         currencyChange: this.currencyChange
       }));
@@ -78376,13 +78332,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var validate = function validate(values) {
+  var errors = {};
+
+  if (!values.firstName) {
+    errors.firstName = 'Required';
+  } else if (values.firstName.length > 15) {
+    errors.firstName = 'Must be 15 characters or less';
+  }
+
+  if (!values.lastName) {
+    errors.lastName = 'Required';
+  } else if (values.lastName.length > 20) {
+    errors.lastName = 'Must be 20 characters or less';
+  }
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  return errors;
+};
+
 var OrderForm = function OrderForm() {
-  // Pass the useFormik() hook initial form values and a submit function that will
-  // be called when the form is submitted
   var formik = Object(formik__WEBPACK_IMPORTED_MODULE_1__["useFormik"])({
     initialValues: {
+      firstName: '',
+      lastName: '',
       email: ''
     },
+    validate: validate,
     onSubmit: function onSubmit(values) {
       alert(JSON.stringify(values, null, 2));
     }
@@ -78390,15 +78371,35 @@ var OrderForm = function OrderForm() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: formik.handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "firstName"
+  }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "firstName",
+    name: "firstName",
+    type: "text",
+    onChange: formik.handleChange,
+    onBlur: formik.handleBlur,
+    value: formik.values.firstName
+  }), formik.touched.firstName && formik.errors.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.firstName) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "lastName"
+  }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "lastName",
+    name: "lastName",
+    type: "text",
+    onChange: formik.handleChange,
+    onBlur: formik.handleBlur,
+    value: formik.values.lastName
+  }), formik.touched.lastName && formik.errors.lastName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.lastName) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email"
   }, "Email Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "email",
     name: "email",
     type: "email",
     onChange: formik.handleChange,
+    onBlur: formik.handleBlur,
     value: formik.values.email
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "submit"
+  }), formik.touched.email && formik.errors.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.email) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit",
+    disabled: !formik.values.firstName || !formik.values.lastName || !formik.values.email
   }, "Submit"));
 };
 
@@ -78474,7 +78475,7 @@ var Product = /*#__PURE__*/function (_Component) {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-title product-price"
-      }, this.props.currency == 'USD' && '$' + this.props.data.usd_price, this.props.currency == 'Euro' && "\u20AC" + (this.props.data.usd_price / this.props.euroToDolar).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currency == 'USD' && '$' + this.props.data.usd_price, this.props.currency == 'Euro' && "\u20AC" + (this.props.data.usd_price / this.props.euroToDollar).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-text product-description"
       }, this.props.data.description), this.props.data.amount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "product-items-counter hvr-grow-shadow",
@@ -78578,7 +78579,7 @@ var Products = /*#__PURE__*/function (_Component) {
           data: product,
           removeItem: _this2.removeItem,
           currency: _this2.props.currency,
-          euroToDolar: _this2.props.euroToDolar,
+          euroToDollar: _this2.props.euroToDollar,
           addItem: _this2.addItem
         });
       }));
@@ -78590,6 +78591,144 @@ var Products = /*#__PURE__*/function (_Component) {
 
 ;
 /* harmony default export */ __webpack_exports__["default"] = (Products);
+
+/***/ }),
+
+/***/ "./resources/js/components/ViewOrder.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/ViewOrder.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./atoms/OrderItem */ "./resources/js/components/atoms/OrderItem.js");
+/* harmony import */ var _atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./atoms/CurrencySwitch */ "./resources/js/components/atoms/CurrencySwitch.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var ViewOrder = /*#__PURE__*/function (_Component) {
+  _inherits(ViewOrder, _Component);
+
+  var _super = _createSuper(ViewOrder);
+
+  function ViewOrder(props) {
+    var _this;
+
+    _classCallCheck(this, ViewOrder);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      showOrderList: true,
+      showForm: false
+    };
+    _this.removeItems = _this.removeItems.bind(_assertThisInitialized(_this));
+    _this.enableForm = _this.enableForm.bind(_assertThisInitialized(_this));
+    react_modal__WEBPACK_IMPORTED_MODULE_1___default.a.setAppElement('body');
+    return _this;
+  }
+
+  _createClass(ViewOrder, [{
+    key: "removeItems",
+    value: function removeItems(which) {
+      this.props.amountChange(which, -1);
+    }
+  }, {
+    key: "enableForm",
+    value: function enableForm() {
+      this.setState({
+        showForm: true,
+        showOrderList: false
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
+      var products = this.props.products;
+      products = products.filter(function (product) {
+        return product.amount > 0;
+      });
+      var total = products.reduce(function (total, product) {
+        return total + product.amount * product.usd_price;
+      }, 0);
+      total = (this.props.currency == 'USD' ? total : total / this.props.euroToDollar).toFixed(2);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkout-modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/x.png",
+        className: "close-checkout",
+        onClick: this.props.hideCheckout
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/logo-transp.png",
+        className: "checkout-logo"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "checkout-content currency-switch-container row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your order"), products.map(function (product) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_OrderItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: product.id,
+          data: product,
+          removeItems: _this2.removeItems,
+          currency: _this2.props.currency,
+          euroToDollar: _this2.props.euroToDollar
+        });
+      }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12 col-md-12 empty-cart"
+      }, "You want more pizza... Please select at least one of them")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "order-total row col-md-6 col-sm-10"
+      }, "Order total: ", total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row col-md-2 col-sm-2 cart-button-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        currency: this.props.currency,
+        onChange: this.props.currencyChange,
+        amountChange: this.props.amountChange
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn my-2 my-sm-0 btn-".concat(button_mode),
+        onClick: this.enableForm
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/checkout.png",
+        className: "checkout-btn"
+      })))));
+    }
+  }]);
+
+  return ViewOrder;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ViewOrder);
 
 /***/ }),
 
@@ -78758,7 +78897,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var price = this.props.currency == 'USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDolar).toFixed(2);
+      var price = this.props.currency == 'USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDollar).toFixed(2);
       var image_url = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_2__["default"], "img/products/").concat(this.props.data.image_url);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row order-list"

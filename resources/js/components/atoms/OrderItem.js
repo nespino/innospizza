@@ -11,10 +11,8 @@ class Checkout extends Component {
         this.amountChange = this.props.amountChange;
     }
 
-
-
     render () {
-        let price = this.props.currency=='USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDolar).toFixed(2);
+        let price = this.props.currency=='USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDollar).toFixed(2);
         let image_url = `${url}img/products/${this.props.data.image_url}`;
 
         return (

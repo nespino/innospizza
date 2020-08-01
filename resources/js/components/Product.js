@@ -19,7 +19,7 @@ class Product extends Component {
                 <div className="card-body">
                     <div className="card-title product-price">
                         { this.props.currency=='USD' && '$' + this.props.data.usd_price }
-                        { this.props.currency=='Euro' && '\u20AC' + (this.props.data.usd_price / this.props.euroToDolar).toFixed(2) }
+                        { this.props.currency=='Euro' && '\u20AC' + (this.props.data.usd_price / this.props.euroToDollar).toFixed(2) }
                     </div>
                     <div className="card-text product-description">
                         {this.props.data.description}

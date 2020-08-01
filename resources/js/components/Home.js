@@ -13,7 +13,7 @@ class Home extends Component {
         super(props);
         this.state = {
             currency: 'USD',
-            euroToDolar: 0,
+            euroToDollar: 0,
             products: [],
             showCheckout: false,
         };
@@ -29,12 +29,12 @@ class Home extends Component {
         fetch("https://api.exchangeratesapi.io/latest?base=EUR&symbols=USD")
             .then(response => response.json())
         .then(response => {
-            let euroToDolar = response.rates['USD'];
-            that.setState({ euroToDolar: euroToDolar })
+            let euroToDollar = response.rates['USD'];
+            that.setState({ euroToDollar: euroToDollar })
         }).catch(function(e){
             // Fallback to hardcoded
             // TODO: Save the value in db, periodically update it.
-            that.setState({ euroToDolar: 1.1725 })
+            that.setState({ euroToDollar: 1.1725 })
         });
 
         axios.get(`${url}api/products`).then(response=>{
@@ -88,7 +88,7 @@ class Home extends Component {
                     <div className="justify-content-center">
                         <Products
                             currency={this.state.currency}
-                            euroToDolar={this.state.euroToDolar}
+                            euroToDollar={this.state.euroToDollar}
                             products={this.state.products}
                             amountChange={this.amountChange}
                         />
@@ -101,7 +101,7 @@ class Home extends Component {
                     hideCheckout={this.hideCheckout}
                     products={this.state.products}
                     currency={this.state.currency}
-                    euroToDolar={this.state.euroToDolar}
+                    euroToDollar={this.state.euroToDollar}
                     amountChange={this.amountChange}
                     currencyChange={this.currencyChange}
                 />

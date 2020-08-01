@@ -30,7 +30,7 @@ class Products extends Component {
                         data={product}
                         removeItem={this.removeItem}
                         currency={this.props.currency}
-                        euroToDolar={this.props.euroToDolar}
+                        euroToDollar={this.props.euroToDollar}
                         addItem={this.addItem}
                     />)}
             </div>
