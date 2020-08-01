@@ -13,7 +13,6 @@ class Navbar extends Component {
     }
 
     render() {
-        let currency_img = `img/checkout_${this.props.currency}.png`;
         let button_mode = this.props.currency == 'USD' ? 'success' : 'info';
         return (
             <nav className="navbar navbar-light currency-switch-container">
@@ -31,7 +30,7 @@ class Navbar extends Component {
                         onChange={this.props.currencyChange}
                     />
                     <button className={`btn my-2 my-sm-0 btn-${button_mode}`} onClick={this.props.showCheckout}>
-                        <img src={currency_img} className="checkout-btn"/>
+                        <img src={"img/checkout.png"} className="checkout-btn"/>
                     </button>
                 </div>
             </nav>

@@ -2,32 +2,44 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal'
 import OrderItem from './atoms/OrderItem'
 import CurrencySwitch from './atoms/CurrencySwitch'
+import OrderForm from './OrderForm'
+
 
 class Checkout extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            showOrderList: true,
             showForm: false,
         };
         this.removeItems = this.removeItems.bind(this);
+        this.enableForm = this.enableForm.bind(this);
+        ReactModal.setAppElement('body');
     }
+
 
     removeItems(which) {
         this.props.amountChange(which, -1);
     }
 
+    enableForm()  {
+        this.setState({
+            showForm: true,
+            showOrderList: false,
+        })
+    }
+
     render () {
+        let button_mode = this.props.currency == 'USD' ? 'success' : 'info';
         let products = this.props.products;
         products = products.filter(function(product) {
             return product.amount > 0;
         });
         let total = products.reduce((total, product) => total + product.amount * product.usd_price, 0);
         total = (this.props.currency=='USD' ? total : (total / this.props.euroToDolar)).toFixed(2);
-        let button_mode = this.props.currency == 'USD' ? 'success' : 'info';
-        let currency_img = `img/checkout_${this.props.currency}.png`;
         return (
             <div className="checkout-modal">
-                <ReactModal isOpen={this.props.showCheckout}>
+                <ReactModal isOpen={this.props.showCheckout && this.state.showOrderList}>
                     <img src="img/x.png" className="close-checkout" onClick={this.props.hideCheckout} />
                     <img src="img/logo-transp.png" className="checkout-logo" />
                     <div className="checkout-content currency-switch-container row">
@@ -52,14 +64,16 @@ class Checkout extends Component {
                                 onChange={this.props.currencyChange}
                                 amountChange={this.props.amountChange}
                             />
-                            <button className={`btn my-2 my-sm-0 btn-${button_mode}`}>
-                                <img src={currency_img} className="checkout-btn"/>
+                            <button className={`btn my-2 my-sm-0 btn-${button_mode}`} onClick={this.enableForm}>
+                                <img src={"img/checkout.png"} className="checkout-btn"/>
                             </button>
                         </div>
                     </div>
                 </ReactModal>
-
-            </div>
+                <ReactModal isOpen={this.props.showCheckout && (this.state.showForm)}>
+                    <OrderForm />
+                </ReactModal>
+        </div>
         )
     }
 }
