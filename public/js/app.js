@@ -77971,21 +77971,24 @@ var Checkout = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var showCheckout = this.props.showCheckout;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-modal"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        isOpen: this.props.showCheckout && this.state.showOrderList
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ViewOrder__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, showCheckout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        isOpen: this.props.showCheckout
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/x.png",
+        className: "close-checkout",
+        onClick: this.props.hideCheckout
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/logo-transp.png",
+        className: "checkout-logo"
+      }), this.state.showOrderList && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ViewOrder__WEBPACK_IMPORTED_MODULE_2__["default"], {
         products: this.props.products,
         currency: this.props.currency,
         euroToDollar: this.props.euroToDollar,
-        hideCheckout: this.props.hideCheckout,
         enableForm: this.enableForm
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        isOpen: this.props.showCheckout && this.state.showForm
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        hideCheckout: this.props.hideCheckout
-      })));
+      }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
 
@@ -78718,15 +78721,6 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
       }, 0);
       total = (this.props.currency == 'USD' ? total : total / this.props.euroToDollar).toFixed(2);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "checkout-modal"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/x.png",
-        className: "close-checkout",
-        onClick: this.props.hideCheckout
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/logo-transp.png",
-        className: "checkout-logo"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-content currency-switch-container row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12"
@@ -78754,7 +78748,7 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/checkout.png",
         className: "checkout-btn"
-      })))));
+      }))));
     }
   }]);
 

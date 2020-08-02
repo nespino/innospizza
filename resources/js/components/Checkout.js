@@ -29,17 +29,23 @@ class Checkout extends Component {
     }
 
     render () {
+        let showCheckout = this.props.showCheckout;
         return (
-            <div className="checkout-modal">
-                <ReactModal isOpen={this.props.showCheckout && this.state.showOrderList}>
-                    <ViewOrder products={this.props.products} currency={this.props.currency}
-                        euroToDollar={this.props.euroToDollar} hideCheckout={this.props.hideCheckout}
-                        enableForm={this.enableForm}/>
-                </ReactModal>
-                <ReactModal isOpen={this.props.showCheckout && (this.state.showForm)}>
-                    <OrderForm hideCheckout={this.props.hideCheckout} />
-                </ReactModal>
-        </div>
+            <div className="checkout-modal" >
+                { showCheckout &&
+                    <ReactModal isOpen={this.props.showCheckout}>
+                        <img src="img/x.png" className="close-checkout" onClick={this.props.hideCheckout} />
+                        <img src="img/logo-transp.png" className="checkout-logo" />
+                        { this.state.showOrderList &&
+                            <ViewOrder products={this.props.products} currency={this.props.currency}
+                                euroToDollar={this.props.euroToDollar} enableForm={this.enableForm}/>
+                        }
+                        { this.state.showForm &&
+                             <OrderForm />
+                        }
+                    </ReactModal>
+                }
+            </div>
         )
     }
 }
