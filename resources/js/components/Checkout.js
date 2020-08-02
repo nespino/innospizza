@@ -48,7 +48,7 @@ class Checkout extends Component {
                             <ViewOrder products={this.props.products} currency={this.props.currency}
                                 euroToDollar={this.props.euroToDollar} enableForm={this.enableForm}
                                 currencyChange={this.props.currencyChange} hideCheckout={this.hideCheckout}
-                                goShop={this.props.goShop}/>
+                                goShop={this.props.goShop} amountChange={this.props.amountChange}/>
                         }
                         { this.state.showForm &&
                              <OrderForm />

@@ -84179,7 +84179,8 @@ var Checkout = /*#__PURE__*/function (_Component) {
         enableForm: this.enableForm,
         currencyChange: this.props.currencyChange,
         hideCheckout: this.hideCheckout,
-        goShop: this.props.goShop
+        goShop: this.props.goShop,
+        amountChange: this.props.amountChange
       }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
