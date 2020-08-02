@@ -28,27 +28,20 @@ class Product extends Component {
     }
 
     addItem(data, e) {
-        if (!this.state.lockAmountChange) {
-            if (this.props.data.amount == 0) {
-                this.setState({
-                    AnimatedAmountDiv: AnimatedAmountIn
-                })
-            }
-            this.props.addItem(data, e);
+        if (this.props.data.amount == 0) {
             this.setState({
-                showAmount: true,
-                animationAmount: this.props.data.amount,
-                lockAmountChange: true
+                AnimatedAmountDiv: AnimatedAmountIn
             })
-            let that = this;
-            setTimeout(function () {
-                that.setState({
-                    lockAmountChange: false
-                })
-            }, 450);
-
-            this.popSound.play();
         }
+        this.props.addItem(data, e);
+        this.setState({
+            showAmount: true,
+            animationAmount: this.props.data.amount,
+        })
+        let that = this;
+
+        this.popSound.play();
+        this.popSound = new Audio(popSound);
     }
 
     removeItem(data, e) {
@@ -67,17 +60,13 @@ class Product extends Component {
                 that.setState({
                     showAmount: showAmount,
                     animationAmount: that.props.data.amount,
+                    lockAmountChange: false
                 })
             }, 400);
 
-            setTimeout(function () {
-                that.setState({
-                    lockAmountChange: false
-                })
-            }, 600);
-
             this.props.removeItem(data, e);
             this.discardSound.play();
+            this.discardSound = new Audio(discardSound);
         }
     }
 

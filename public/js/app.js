@@ -84776,27 +84776,20 @@ var Product = /*#__PURE__*/function (_Component) {
   _createClass(Product, [{
     key: "addItem",
     value: function addItem(data, e) {
-      if (!this.state.lockAmountChange) {
-        if (this.props.data.amount == 0) {
-          this.setState({
-            AnimatedAmountDiv: AnimatedAmountIn
-          });
-        }
-
-        this.props.addItem(data, e);
+      if (this.props.data.amount == 0) {
         this.setState({
-          showAmount: true,
-          animationAmount: this.props.data.amount,
-          lockAmountChange: true
+          AnimatedAmountDiv: AnimatedAmountIn
         });
-        var that = this;
-        setTimeout(function () {
-          that.setState({
-            lockAmountChange: false
-          });
-        }, 450);
-        this.popSound.play();
       }
+
+      this.props.addItem(data, e);
+      this.setState({
+        showAmount: true,
+        animationAmount: this.props.data.amount
+      });
+      var that = this;
+      this.popSound.play();
+      this.popSound = new Audio(_sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__["default"]);
     }
   }, {
     key: "removeItem",
@@ -84816,16 +84809,13 @@ var Product = /*#__PURE__*/function (_Component) {
         setTimeout(function () {
           that.setState({
             showAmount: showAmount,
-            animationAmount: that.props.data.amount
-          });
-        }, 400);
-        setTimeout(function () {
-          that.setState({
+            animationAmount: that.props.data.amount,
             lockAmountChange: false
           });
-        }, 600);
+        }, 400);
         this.props.removeItem(data, e);
         this.discardSound.play();
+        this.discardSound = new Audio(_sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__["default"]);
       }
     }
   }, {
