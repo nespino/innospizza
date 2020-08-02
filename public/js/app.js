@@ -85412,7 +85412,7 @@ var SmoothScrolling = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "sounds/discard.mp3");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "./sounds/discard.mp3");
 
 /***/ }),
 
@@ -85425,7 +85425,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "sounds/pop.mp3");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "./sounds/pop.mp3");
 
 /***/ }),
 
