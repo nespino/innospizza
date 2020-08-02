@@ -77979,10 +77979,13 @@ var Checkout = /*#__PURE__*/function (_Component) {
         products: this.props.products,
         currency: this.props.currency,
         euroToDollar: this.props.euroToDollar,
-        hideCheckout: this.props.hideCheckout
+        hideCheckout: this.props.hideCheckout,
+        enableForm: this.enableForm
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
         isOpen: this.props.showCheckout && this.state.showForm
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        hideCheckout: this.props.hideCheckout
+      })));
     }
   }]);
 
@@ -78348,10 +78351,20 @@ var validate = function validate(values) {
     errors.lastName = 'Must be 20 characters or less';
   }
 
-  if (!values.email) {
-    errors.email = 'Required';
+  if (!values.phone) {
+    errors.phone = 'Required';
+  } else if (!/^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g.test(values.phone)) {
+    errors.phone = 'Invalid phone';
+  }
+
+  if (!values.email) {// Email not required
+    // errors.email = 'Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
+  }
+
+  if (!values.address) {
+    errors.address = 'Required';
   }
 
   return errors;
@@ -78362,6 +78375,7 @@ var OrderForm = function OrderForm() {
     initialValues: {
       firstName: '',
       lastName: '',
+      phone: '',
       email: ''
     },
     validate: validate,
@@ -78390,6 +78404,15 @@ var OrderForm = function OrderForm() {
     onBlur: formik.handleBlur,
     value: formik.values.lastName
   }), formik.touched.lastName && formik.errors.lastName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.lastName) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "phone"
+  }, "Phone"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "phone",
+    name: "phone",
+    type: "text",
+    onChange: formik.handleChange,
+    onBlur: formik.handleBlur,
+    value: formik.values.phone
+  }), formik.touched.phone && formik.errors.phone ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.phone) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email"
   }, "Email Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "email",
@@ -78398,9 +78421,18 @@ var OrderForm = function OrderForm() {
     onChange: formik.handleChange,
     onBlur: formik.handleBlur,
     value: formik.values.email
-  }), formik.touched.email && formik.errors.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.email) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }), formik.touched.email && formik.errors.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.email) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "address"
+  }, "Delivery Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "address",
+    name: "address",
+    type: "text",
+    onChange: formik.handleChange,
+    onBlur: formik.handleBlur,
+    value: formik.values.address
+  }), formik.touched.address && formik.errors.address ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.address) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
-    disabled: !formik.values.firstName || !formik.values.lastName || !formik.values.email
+    disabled: !formik.isValid
   }, "Submit"));
 };
 
@@ -78718,7 +78750,7 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
         amountChange: this.props.amountChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn my-2 my-sm-0 btn-".concat(button_mode),
-        onClick: this.enableForm
+        onClick: this.props.enableForm
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/checkout.png",
         className: "checkout-btn"

@@ -15,10 +15,21 @@ const validate = values => {
         errors.lastName = 'Must be 20 characters or less';
     }
 
+    if (!values.phone) {
+        errors.phone = 'Required';
+    } else if (!/^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g.test(values.phone)) {
+        errors.phone = 'Invalid phone';
+    }
+
     if (!values.email) {
-        errors.email = 'Required';
+        // Email not required
+        // errors.email = 'Required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Invalid email address';
+    }
+
+    if (!values.address) {
+        errors.address = 'Required';
     }
 
     return errors;
@@ -29,6 +40,7 @@ const OrderForm = () => {
         initialValues: {
             firstName: '',
             lastName: '',
+            phone: '',
             email: '',
         },
         validate,
@@ -63,6 +75,18 @@ const OrderForm = () => {
             {formik.touched.lastName && formik.errors.lastName ? (
             <div>{formik.errors.lastName}</div>
             ) : null}
+            <label htmlFor="phone">Phone</label>
+                <input
+                id="phone"
+                name="phone"
+                type="text"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.phone}
+            />
+            {formik.touched.phone && formik.errors.phone ? (
+            <div>{formik.errors.phone}</div>
+            ) : null}
             <label htmlFor="email">Email Address</label>
             <input
                 id="email"
@@ -75,7 +99,19 @@ const OrderForm = () => {
             {formik.touched.email && formik.errors.email ? (
             <div>{formik.errors.email}</div>
             ) : null}
-            <button type="submit" disabled={ !formik.values.firstName || !formik.values.lastName || !formik.values.email }>Submit</button>
+            <label htmlFor="address">Delivery Address</label>
+                <input
+                id="address"
+                name="address"
+                type="text"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.address}
+            />
+            {formik.touched.address && formik.errors.address ? (
+            <div>{formik.errors.address}</div>
+            ) : null}
+            <button type="submit" disabled={ !formik.isValid }>Submit</button>
         </form>
     );
 };
