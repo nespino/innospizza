@@ -178,12 +178,18 @@ footer a:hover {
 
   .product-card {
     margin: 40px 2%;
-    height: 480px;
+    height: 500px;
   }
 
   .product-card .product-description {
-    font-size: 12pt;
+    font-size: 11pt;
     font-weight: bold;
+  }
+
+  .card-text-container {
+    height: 165px !important;
+    position: relative;
+    top: -10px;
   }
 
   .currency-switch-container h1, .navbar h3 {
@@ -324,6 +330,17 @@ a {
       text-shadow: 0 0 20px rgba(0,0,0,1);
     }
   }
+}
+
+.card-text-container {
+  display: table;
+  height: 115px;
+  margin-top: -10px;
+}
+
+.card-text {
+  vertical-align: middle;
+  display: table-cell;
 }
 
 /* On mouse-over, add a deeper shadow */

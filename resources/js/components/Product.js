@@ -21,8 +21,10 @@ class Product extends Component {
                         { this.props.currency=='USD' && '$' + this.props.data.usd_price }
                         { this.props.currency=='Euro' && '\u20AC' + (this.props.data.usd_price / this.props.euroToDollar).toFixed(2) }
                     </div>
-                    <div className="card-text product-description">
-                        {this.props.data.description}
+                    <div className="card-text-container">
+                        <div className="card-text product-description">
+                            {this.props.data.description}
+                        </div>
                     </div>
                     {this.props.data.amount > 0 &&
                             <span className="product-items-counter hvr-grow-shadow" onClick={(e) => this.props.removeItem(this.props.data, e)}

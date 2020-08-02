@@ -78536,8 +78536,10 @@ var Product = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-title product-price"
       }, this.props.currency == 'USD' && '$' + this.props.data.usd_price, this.props.currency == 'Euro' && "\u20AC" + (this.props.data.usd_price / this.props.euroToDollar).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-text-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-text product-description"
-      }, this.props.data.description), this.props.data.amount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, this.props.data.description)), this.props.data.amount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "product-items-counter hvr-grow-shadow",
         onClick: function onClick(e) {
           return _this2.props.removeItem(_this2.props.data, e);
