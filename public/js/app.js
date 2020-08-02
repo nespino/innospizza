@@ -84674,6 +84674,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-animations */ "./node_modules/react-animations/lib/index.js");
 /* harmony import */ var react_animations__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_animations__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _url_url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../url/url */ "./resources/js/url/url.js");
+/* harmony import */ var _sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../sounds/pop.mp3 */ "./resources/sounds/pop.mp3");
+/* harmony import */ var _sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../sounds/discard.mp3 */ "./resources/sounds/discard.mp3");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84742,6 +84744,8 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+
+
 var bounceInAnimation = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["keyframes"])(_templateObject(), react_animations__WEBPACK_IMPORTED_MODULE_2__["bounceIn"]);
 var flipAnimation = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["keyframes"])(_templateObject2(), react_animations__WEBPACK_IMPORTED_MODULE_2__["flip"]);
 var AnimatedAmountIn = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3(), bounceInAnimation);
@@ -84764,23 +84768,35 @@ var Product = /*#__PURE__*/function (_Component) {
       AnimatedAmountDiv: AnimatedAmountIn,
       lockAmountChange: false
     };
+    _this.popSound = new Audio(_sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__["default"]);
+    _this.discardSound = new Audio(_sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__["default"]);
     return _this;
   }
 
   _createClass(Product, [{
     key: "addItem",
     value: function addItem(data, e) {
-      if (this.props.data.amount == 0) {
-        this.setState({
-          AnimatedAmountDiv: AnimatedAmountIn
-        });
-      }
+      if (!this.state.lockAmountChange) {
+        if (this.props.data.amount == 0) {
+          this.setState({
+            AnimatedAmountDiv: AnimatedAmountIn
+          });
+        }
 
-      this.props.addItem(data, e);
-      this.setState({
-        showAmount: true,
-        animationAmount: this.props.data.amount
-      });
+        this.props.addItem(data, e);
+        this.setState({
+          showAmount: true,
+          animationAmount: this.props.data.amount,
+          lockAmountChange: true
+        });
+        var that = this;
+        setTimeout(function () {
+          that.setState({
+            lockAmountChange: false
+          });
+        }, 450);
+        this.popSound.play();
+      }
     }
   }, {
     key: "removeItem",
@@ -84800,11 +84816,16 @@ var Product = /*#__PURE__*/function (_Component) {
         setTimeout(function () {
           that.setState({
             showAmount: showAmount,
-            animationAmount: that.props.data.amount,
-            lockAmountChange: false
+            animationAmount: that.props.data.amount
           });
         }, 400);
+        setTimeout(function () {
+          that.setState({
+            lockAmountChange: false
+          });
+        }, 600);
         this.props.removeItem(data, e);
+        this.discardSound.play();
       }
     }
   }, {
@@ -85389,6 +85410,32 @@ var SmoothScrolling = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sounds/discard.mp3":
+/*!**************************************!*\
+  !*** ./resources/sounds/discard.mp3 ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "sounds/discard.mp3");
+
+/***/ }),
+
+/***/ "./resources/sounds/pop.mp3":
+/*!**********************************!*\
+  !*** ./resources/sounds/pop.mp3 ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "sounds/pop.mp3");
 
 /***/ }),
 

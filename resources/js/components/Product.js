@@ -3,12 +3,15 @@ import styled, { keyframes } from 'styled-components';
 import { bounceIn, flip } from 'react-animations';
 import url from '../url/url';
 
+import popSound from '../../sounds/pop.mp3';
+import discardSound from '../../sounds/discard.mp3';
+
 const bounceInAnimation = keyframes`${bounceIn}`;
 const flipAnimation = keyframes`${flip}`;
 
-
 const AnimatedAmountIn = styled.div`animation: 1s ${bounceInAnimation};`
 const AnimatedAmountOut = styled.div`animation: 0.5s ${flipAnimation};`
+
 
 class Product extends Component {
 
@@ -20,19 +23,32 @@ class Product extends Component {
             AnimatedAmountDiv: AnimatedAmountIn,
             lockAmountChange: false
         };
+        this.popSound = new Audio(popSound);
+        this.discardSound = new Audio(discardSound);
     }
 
     addItem(data, e) {
-        if (this.props.data.amount == 0) {
+        if (!this.state.lockAmountChange) {
+            if (this.props.data.amount == 0) {
+                this.setState({
+                    AnimatedAmountDiv: AnimatedAmountIn
+                })
+            }
+            this.props.addItem(data, e);
             this.setState({
-                AnimatedAmountDiv: AnimatedAmountIn
+                showAmount: true,
+                animationAmount: this.props.data.amount,
+                lockAmountChange: true
             })
+            let that = this;
+            setTimeout(function () {
+                that.setState({
+                    lockAmountChange: false
+                })
+            }, 450);
+
+            this.popSound.play();
         }
-        this.props.addItem(data, e);
-        this.setState({
-            showAmount: true,
-            animationAmount: this.props.data.amount
-        })
     }
 
     removeItem(data, e) {
@@ -51,11 +67,17 @@ class Product extends Component {
                 that.setState({
                     showAmount: showAmount,
                     animationAmount: that.props.data.amount,
-                    lockAmountChange: false
                 })
             }, 400);
 
+            setTimeout(function () {
+                that.setState({
+                    lockAmountChange: false
+                })
+            }, 600);
+
             this.props.removeItem(data, e);
+            this.discardSound.play();
         }
     }
 
