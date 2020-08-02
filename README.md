@@ -25,7 +25,7 @@ https://innospizza.herokuapp.com/
 - 6th day: 3hr Images fixes + HD. Card fixes. Responsiveness improved.
 - 6th day: 5hr Cart and checkout form.
 - 6th night: 4hr React motion and animation studies. Product card animation. Scroll.
-
+- 7th day: 2hr Sound implementation.
 
 ## Prerequisites
 
