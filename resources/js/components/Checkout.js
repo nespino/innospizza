@@ -3,7 +3,6 @@ import ReactModal from 'react-modal'
 import ViewOrder from './ViewOrder'
 import OrderForm from './OrderForm'
 
-
 class Checkout extends Component {
     constructor (props) {
         super(props);
@@ -33,7 +32,7 @@ class Checkout extends Component {
         this.setState({
             showForm: false,
             showOrderList: true,
-        })
+        });
         this.props.hideCheckout();
     }
 

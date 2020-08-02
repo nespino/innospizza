@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
-import url from '../url/url'
-
+import url from '../url/url';
 
 class Product extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            showAmount: false
         };
+    }
+
+    addItem(data, e) {
+        this.props.addItem(data, e);
     }
 
     render() {
@@ -31,7 +35,7 @@ class Product extends Component {
                                 title="Click to remove from your order">{this.props.data.amount}</span>
                     }
                 </div>
-                <div className="card-bottom" onClick={(e) => this.props.addItem(this.props.data, e)} title="Click to order!">
+                <div className="card-bottom" onClick={(e) => this.addItem(this.props.data, e)} title="Click to order!">
                     <span>Add to cart</span>
                 </div>
             </div>

@@ -78295,9 +78295,6 @@ var Navbar = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Navbar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
     key: "render",
     value: function render() {
       var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
@@ -78516,11 +78513,18 @@ var Product = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Product);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      showAmount: false
+    };
     return _this;
   }
 
   _createClass(Product, [{
+    key: "addItem",
+    value: function addItem(data, e) {
+      this.props.addItem(data, e);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -78549,7 +78553,7 @@ var Product = /*#__PURE__*/function (_Component) {
       }, this.props.data.amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-bottom",
         onClick: function onClick(e) {
-          return _this2.props.addItem(_this2.props.data, e);
+          return _this2.addItem(_this2.props.data, e);
         },
         title: "Click to order!"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Add to cart")));

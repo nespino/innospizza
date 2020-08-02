@@ -101,7 +101,8 @@ footer a:hover {
 }
 
 .product-card .product-description {
-  font-size: 10pt
+  font-size: 10pt;
+  font-weight: bold;
 }
 
 .product-card {
@@ -183,7 +184,6 @@ footer a:hover {
 
   .product-card .product-description {
     font-size: 11pt;
-    font-weight: bold;
   }
 
   .card-text-container {
@@ -387,6 +387,7 @@ a {
   font-size: 13pt;
   text-align: center;
   z-index: 5;
+  cursor: pointer;
 }
 
 .no-select {
@@ -481,8 +482,8 @@ a {
   bottom: 0px;
   margin: auto;
   text-align: center;
-  background-color: #7de643;
-  color: #352424;
+  background-color: $secondary;
+  color: white;
   display: block;
   width: 100%;
   left: 0;
@@ -490,6 +491,7 @@ a {
   height: 67px;
   padding-top: 22px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .card-bottom span {

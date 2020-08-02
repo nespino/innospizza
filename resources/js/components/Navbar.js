@@ -9,9 +9,6 @@ class Navbar extends Component {
         };
     }
 
-    componentDidMount() {
-    }
-
     render() {
         let button_mode = this.props.currency == 'USD' ? 'success' : 'info';
         return (
