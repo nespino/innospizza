@@ -84823,7 +84823,7 @@ var Product = /*#__PURE__*/function (_Component) {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-title product-price"
-      }, this.props.currency == 'USD' && '$' + this.props.data.usd_price, this.props.currency == 'Euro' && "\u20AC" + (this.props.data.usd_price / this.props.euroToDollar).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currency == 'USD' && '$' + Number(this.props.data.usd_price).toFixed(2), this.props.currency == 'Euro' && "\u20AC" + Number(this.props.data.usd_price / this.props.euroToDollar).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-text-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-text product-description"
@@ -85279,11 +85279,11 @@ var Checkout = /*#__PURE__*/function (_Component) {
         }
       }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
-      }, "Price: ", price, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Price: ", Number(price).toFixed(2), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
       }, "Amount: ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
-      }, "Subtotal: ", (this.props.data.amount * price).toFixed(2), " "))));
+      }, "Subtotal: ", Number(this.props.data.amount * price).toFixed(2), " "))));
     }
   }]);
 

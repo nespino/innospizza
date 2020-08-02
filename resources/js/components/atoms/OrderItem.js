@@ -28,9 +28,9 @@ class Checkout extends Component {
                         </div>
                         <div className="col-sm-2 col-md-4 col-lg-2 col-xg-2 subtotal">
                             <div className="remove-items-container"> <img src="img/x.png" className="remove-items" onClick={(e) => this.props.removeItems(this.props.data, e)} /> </div>
-                            <div className="">Price: { price } </div>
+                            <div className="">Price: { Number(price).toFixed(2) } </div>
                             <div className="">Amount: { this.props.data.amount } </div>
-                            <div className="">Subtotal: { (this.props.data.amount * price).toFixed(2) } </div>
+                            <div className="">Subtotal: { Number(this.props.data.amount * price).toFixed(2) } </div>
                         </div>
                     </div>
                 }
