@@ -48,7 +48,7 @@ class ViewOrder extends Component {
                         euroToDollar={this.props.euroToDollar}
                     />)}
                     {total == 0 &&
-                        <div className="col-12 col-md-12 empty-cart" onClick={this.props.hideCheckout}>
+                        <div className="col-12 col-md-12 empty-cart" onClick={this.props.goShop}>
                             <div>You want more pizza...</div>
                             <div>Please select at least one of them</div>
                             <img src="img/logo-transp.png" className="no-products-logo" />

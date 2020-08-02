@@ -43,11 +43,12 @@ class Checkout extends Component {
                 { showCheckout &&
                     <ReactModal isOpen={this.props.showCheckout}>
                         <img src="img/x.png" className="close-checkout" onClick={this.hideCheckout} />
-                        <img src="img/logo-transp.png" className="checkout-logo" />
+                        <img src="img/logo-transp.png" className="checkout-logo"/>
                         { this.state.showOrderList &&
                             <ViewOrder products={this.props.products} currency={this.props.currency}
                                 euroToDollar={this.props.euroToDollar} enableForm={this.enableForm}
-                                currencyChange={this.props.currencyChange} hideCheckout={this.hideCheckout}/>
+                                currencyChange={this.props.currencyChange} hideCheckout={this.hideCheckout}
+                                goShop={this.props.goShop}/>
                         }
                         { this.state.showForm &&
                              <OrderForm />

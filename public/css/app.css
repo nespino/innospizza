@@ -11042,7 +11042,7 @@ footer a:hover {
 }
 
 .currency-switch-container {
-  background-color: #ffa50e;
+  background-color: transparent;
   color: #6f0f0f;
   font-family: "Michroma", "sans-serif";
 }
@@ -11469,5 +11469,15 @@ a {
   width: 100px;
   text-align: right;
   margin: 5px 10px 0px 0px;
+}
+
+.navbar {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffa50e+57,7db9e8+100&1+41,0+100 */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffa50e 41%, rgba(255, 165, 14, 0.73) 57%, rgba(125, 185, 232, 0) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa50e", endColorstr="#007db9e8",GradientType=0 );
+  /* IE6-9 */
 }
 

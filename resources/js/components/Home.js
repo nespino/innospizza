@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import Products from './Products'
 import Checkout from './Checkout'
+import SmoothScrolling from "../utils/smoothScrolling";
 
 import url from '../url/url'
 
@@ -21,6 +22,7 @@ class Home extends Component {
         this.amountChange = this.amountChange.bind(this);
         this.showCheckout = this.showCheckout.bind(this);
         this.hideCheckout = this.hideCheckout.bind(this);
+        this.goShop = this.goShop.bind(this);
     }
 
     async componentDidMount() {
@@ -50,6 +52,11 @@ class Home extends Component {
         })
     }
 
+    goShop() {
+        this.hideCheckout();
+        SmoothScrolling.scrollTo("first-product");
+    }
+
     showCheckout(){
         this.setState({
             showCheckout: true
@@ -66,6 +73,9 @@ class Home extends Component {
         let products = this.state.products.map(function(p) {
             if (p==product) {
                 p.amount = parseInt(p.amount || 0) + parseInt(amount);
+            }
+            if (p.amount < 0) {
+                p.amount = 0;
             }
             return p;
         })
@@ -104,6 +114,7 @@ class Home extends Component {
                     euroToDollar={this.state.euroToDollar}
                     amountChange={this.amountChange}
                     currencyChange={this.currencyChange}
+                    goShop={this.goShop}
                 />
 
             </div>

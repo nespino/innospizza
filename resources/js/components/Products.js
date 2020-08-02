@@ -21,6 +21,10 @@ class Products extends Component {
 
     render() {
         let products = this.props.products;
+        let firstProduct;
+        if (products.length) {
+            firstProduct = products[0].id;
+        }
 
         return (
             <div className="col-12 product-container">
@@ -32,8 +36,10 @@ class Products extends Component {
                         currency={this.props.currency}
                         euroToDollar={this.props.euroToDollar}
                         addItem={this.addItem}
+                        firstProduct={firstProduct == product.id}
                     />)}
             </div>
+
         )
     }
 };
