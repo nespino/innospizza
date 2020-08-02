@@ -77969,9 +77969,19 @@ var Checkout = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "hideCheckout",
+    value: function hideCheckout() {
+      this.setState({
+        showForm: false,
+        showOrderList: true
+      });
+      this.props.hideCheckout;
+    }
+  }, {
     key: "render",
     value: function render() {
       var showCheckout = this.props.showCheckout;
+      var hideCheckout = this.hideCheckout;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-modal"
       }, showCheckout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -77979,7 +77989,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/x.png",
         className: "close-checkout",
-        onClick: this.props.hideCheckout
+        onClick: hideCheckout
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/logo-transp.png",
         className: "checkout-logo"
@@ -78387,7 +78397,10 @@ var OrderForm = function OrderForm() {
     }
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "order-form container",
     onSubmit: formik.handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "firstName"
   }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -78397,7 +78410,9 @@ var OrderForm = function OrderForm() {
     onChange: formik.handleChange,
     onBlur: formik.handleBlur,
     value: formik.values.firstName
-  }), formik.touched.firstName && formik.errors.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.firstName) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }), formik.touched.firstName && formik.errors.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.firstName) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "lastName"
   }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "lastName",
@@ -78406,7 +78421,9 @@ var OrderForm = function OrderForm() {
     onChange: formik.handleChange,
     onBlur: formik.handleBlur,
     value: formik.values.lastName
-  }), formik.touched.lastName && formik.errors.lastName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.lastName) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }), formik.touched.lastName && formik.errors.lastName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.lastName) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "phone"
   }, "Phone"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "phone",
@@ -78415,7 +78432,9 @@ var OrderForm = function OrderForm() {
     onChange: formik.handleChange,
     onBlur: formik.handleBlur,
     value: formik.values.phone
-  }), formik.touched.phone && formik.errors.phone ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.phone) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }), formik.touched.phone && formik.errors.phone ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.phone) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email"
   }, "Email Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "email",
@@ -78424,7 +78443,9 @@ var OrderForm = function OrderForm() {
     onChange: formik.handleChange,
     onBlur: formik.handleBlur,
     value: formik.values.email
-  }), formik.touched.email && formik.errors.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.email) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }), formik.touched.email && formik.errors.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.email) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "address"
   }, "Delivery Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "address",
@@ -78433,10 +78454,12 @@ var OrderForm = function OrderForm() {
     onChange: formik.handleChange,
     onBlur: formik.handleBlur,
     value: formik.values.address
-  }), formik.touched.address && formik.errors.address ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.address) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }), formik.touched.address && formik.errors.address ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.address) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     disabled: !formik.isValid
-  }, "Submit"));
+  }, "Submit")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (OrderForm);

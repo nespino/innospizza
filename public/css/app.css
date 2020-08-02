@@ -11389,3 +11389,24 @@ a {
   padding-right: 40px;
 }
 
+.order-form {
+  margin-top: 20px;
+}
+
+.order-form .row {
+  margin: 20px auto;
+  width: 380px;
+  color: #000;
+}
+
+.order-form .row > div {
+  margin: 5px 10px;
+  color: #F00;
+}
+
+.order-form label {
+  width: 100px;
+  text-align: right;
+  margin: 5px 10px 0px 0px;
+}
+

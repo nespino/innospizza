@@ -50,68 +50,80 @@ const OrderForm = () => {
     });
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="firstName">First Name</label>
-            <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.firstName}
-            />
-            {formik.touched.firstName && formik.errors.firstName ? (
-            <div>{formik.errors.firstName}</div>
-            ) : null}
-            <label htmlFor="lastName">Last Name</label>
-            <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.lastName}
-            />
-            {formik.touched.lastName && formik.errors.lastName ? (
-            <div>{formik.errors.lastName}</div>
-            ) : null}
-            <label htmlFor="phone">Phone</label>
+        <form className="order-form container" onSubmit={formik.handleSubmit}>
+            <div className="row">
+                <label htmlFor="firstName">First Name</label>
                 <input
-                id="phone"
-                name="phone"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.phone}
-            />
-            {formik.touched.phone && formik.errors.phone ? (
-            <div>{formik.errors.phone}</div>
-            ) : null}
-            <label htmlFor="email">Email Address</label>
-            <input
-                id="email"
-                name="email"
-                type="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
-            ) : null}
-            <label htmlFor="address">Delivery Address</label>
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.firstName}
+                />
+                {formik.touched.firstName && formik.errors.firstName ? (
+                <div>{formik.errors.firstName}</div>
+                ) : null}
+            </div>
+            <div className="row">
+                <label htmlFor="lastName">Last Name</label>
                 <input
-                id="address"
-                name="address"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.address}
-            />
-            {formik.touched.address && formik.errors.address ? (
-            <div>{formik.errors.address}</div>
-            ) : null}
-            <button type="submit" disabled={ !formik.isValid }>Submit</button>
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.lastName}
+                />
+                {formik.touched.lastName && formik.errors.lastName ? (
+                <div>{formik.errors.lastName}</div>
+                ) : null}
+            </div>
+            <div className="row">
+                <label htmlFor="phone">Phone</label>
+                <input
+                    id="phone"
+                    name="phone"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.phone}
+                />
+                {formik.touched.phone && formik.errors.phone ? (
+                <div>{formik.errors.phone}</div>
+                ) : null}
+            </div>
+            <div className="row">
+                <label htmlFor="email">Email Address</label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+                ) : null}
+            </div>
+            <div className="row">
+                <label htmlFor="address">Delivery Address</label>
+                    <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.address}
+                />
+                {formik.touched.address && formik.errors.address ? (
+                <div>{formik.errors.address}</div>
+                ) : null}
+            </div>
+            <div className="row">
+                <button type="submit" disabled={ !formik.isValid }>Submit</button>
+            </div>
         </form>
     );
 };

@@ -28,13 +28,22 @@ class Checkout extends Component {
         })
     }
 
+    hideCheckout() {
+        this.setState({
+            showForm: false,
+            showOrderList: true,
+        })
+        this.props.hideCheckout;
+    }
+
     render () {
         let showCheckout = this.props.showCheckout;
+        let hideCheckout = this.hideCheckout;
         return (
             <div className="checkout-modal" >
                 { showCheckout &&
                     <ReactModal isOpen={this.props.showCheckout}>
-                        <img src="img/x.png" className="close-checkout" onClick={this.props.hideCheckout} />
+                        <img src="img/x.png" className="close-checkout" onClick={hideCheckout} />
                         <img src="img/logo-transp.png" className="checkout-logo" />
                         { this.state.showOrderList &&
                             <ViewOrder products={this.props.products} currency={this.props.currency}
