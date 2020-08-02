@@ -77997,7 +77997,8 @@ var Checkout = /*#__PURE__*/function (_Component) {
         products: this.props.products,
         currency: this.props.currency,
         euroToDollar: this.props.euroToDollar,
-        enableForm: this.enableForm
+        enableForm: this.enableForm,
+        currencyChange: this.props.currencyChange
       }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
@@ -78758,7 +78759,7 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
       }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-12 empty-cart"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You want more pizza..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Please select at least one of them"))), total > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "order-total row col-md-6 col-sm-10"
+        className: "order-total row col-md-6 col-sm-8"
       }, "Order total: ", total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-2 col-sm-2 cart-button-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -78952,7 +78953,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row order-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-4 col-md-2 col-lg-3 col-xg-2"
+        className: "col-sm-4 col-md-2 col-lg-3 col-xg-2 order-list-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: image_url
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

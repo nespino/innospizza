@@ -47,7 +47,8 @@ class Checkout extends Component {
                         <img src="img/logo-transp.png" className="checkout-logo" />
                         { this.state.showOrderList &&
                             <ViewOrder products={this.props.products} currency={this.props.currency}
-                                euroToDollar={this.props.euroToDollar} enableForm={this.enableForm}/>
+                                euroToDollar={this.props.euroToDollar} enableForm={this.enableForm}
+                                currencyChange={this.props.currencyChange}/>
                         }
                         { this.state.showForm &&
                              <OrderForm />

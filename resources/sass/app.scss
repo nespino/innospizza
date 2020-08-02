@@ -161,7 +161,7 @@ footer a:hover {
   max-width: 60px;
 }
 
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   .navbar .logo-container {
     text-align: center;
     width: 100%;
@@ -189,8 +189,24 @@ footer a:hover {
   .currency-switch-container h1, .navbar h3 {
     text-align: center;
   }
+}
 
+.currency-switch-container .react-switch-bg img {
+  width: 40px !important;
+}
 
+@media screen and (max-width: 562px) {
+  .order-list .product-text .product-name {
+    display: none;
+  }
+
+  .order-list .product-text div {
+    text-align: center;
+  }
+
+  .order-list .order-list-img img {
+    max-width: 100%;
+  }
 }
 
 // Full page responsive background image
@@ -229,9 +245,12 @@ div.admin-bg {
 }
 
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 562px) {
   .ReactModalPortal .currency-switch-container {
     margin-bottom: 10px;
+  }
+  .order-list .order-list-img img {
+    max-width: 150px;
   }
 }
 
@@ -409,17 +428,26 @@ a {
   display: inline-table;
 }
 
-.order-list img {
-  max-width: 120px;
+.currency-switch-container .order-list {
+  padding: 0px 10px;
+}
+
+.order-list .order-list-img img {
   margin: 10px;
 }
 
+.order-list .order-list-img {
+  text-align: center;
+}
+
 .order-list .product-text {
-  padding-top: 10px;
+  display: inline;
+  margin: auto;
 }
 
 .order-list .subtotal {
- padding-top: 15px;
+  display: inline;
+  margin: auto;
 }
 
 .card-bottom {

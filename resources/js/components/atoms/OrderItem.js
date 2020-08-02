@@ -19,7 +19,7 @@ class Checkout extends Component {
             <div>
                 { true &&
                     <div className="row order-list">
-                        <div className="col-sm-4 col-md-2 col-lg-3 col-xg-2">
+                        <div className="col-sm-4 col-md-2 col-lg-3 col-xg-2 order-list-img">
                             <img src={ image_url } />
                         </div>
                         <div className="col-sm-6 col-md-4 col-lg-7 col-xg-8 text-left product-text">
