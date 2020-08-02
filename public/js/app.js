@@ -77951,6 +77951,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
     };
     _this.removeItems = _this.removeItems.bind(_assertThisInitialized(_this));
     _this.enableForm = _this.enableForm.bind(_assertThisInitialized(_this));
+    _this.hideCheckout = _this.hideCheckout.bind(_assertThisInitialized(_this));
     react_modal__WEBPACK_IMPORTED_MODULE_1___default.a.setAppElement('body');
     return _this;
   }
@@ -77975,13 +77976,12 @@ var Checkout = /*#__PURE__*/function (_Component) {
         showForm: false,
         showOrderList: true
       });
-      this.props.hideCheckout;
+      this.props.hideCheckout();
     }
   }, {
     key: "render",
     value: function render() {
       var showCheckout = this.props.showCheckout;
-      var hideCheckout = this.hideCheckout;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-modal"
       }, showCheckout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -77989,7 +77989,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/x.png",
         className: "close-checkout",
-        onClick: hideCheckout
+        onClick: this.hideCheckout
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/logo-transp.png",
         className: "checkout-logo"
