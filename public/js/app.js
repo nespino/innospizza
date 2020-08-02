@@ -77998,7 +77998,8 @@ var Checkout = /*#__PURE__*/function (_Component) {
         currency: this.props.currency,
         euroToDollar: this.props.euroToDollar,
         enableForm: this.enableForm,
-        currencyChange: this.props.currencyChange
+        currencyChange: this.props.currencyChange,
+        hideCheckout: this.hideCheckout
       }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
@@ -78759,8 +78760,12 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
           euroToDollar: _this2.props.euroToDollar
         });
       }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 col-md-12 empty-cart"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You want more pizza..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Please select at least one of them"))), total > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12 col-md-12 empty-cart",
+        onClick: this.props.hideCheckout
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You want more pizza..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Please select at least one of them"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "img/logo-transp.png",
+        className: "no-products-logo"
+      }))), total > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "order-total row col-md-6 col-sm-8"
       }, "Order total: ", total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-2 col-sm-2 cart-button-container"

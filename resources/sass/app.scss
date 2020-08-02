@@ -65,7 +65,7 @@ html, body {
 }
 
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   background-color: $primary;
@@ -213,6 +213,15 @@ footer a:hover {
   .order-list .order-list-img img {
     max-width: 100%;
   }
+
+  .empty-cart img {
+    max-width: 100%;
+    width: 200px;
+  }
+}
+
+.no-products-logo {
+  margin-top: 20px;
 }
 
 // Full page responsive background image
@@ -500,6 +509,7 @@ a {
   padding: 20px;
   font-size: 17pt;
   margin-top: 50px;
+  cursor: pointer;
 }
 
 .order-list .product-name {
