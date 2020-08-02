@@ -11057,6 +11057,10 @@ footer a:hover {
   text-align: right;
 }
 
+.currency-switch-container .cart-button-container .btn-info {
+  box-shadow: 1px 2px 5px 0px #14056a !important;
+}
+
 .currency-switch-container .cart-button-container > div {
   margin: auto;
 }
