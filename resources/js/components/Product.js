@@ -70,11 +70,19 @@ class Product extends Component {
         }
     }
 
+    updateAmount() {
+        console.log('product si');
+        console.log(this.props.data.amount);
+        this.setState({
+            animationAmount: 99
+        })
+    }
+
     render() {
-        let image_url = `${url}img/products/${this.props.data.image_url}`;
+        let imageUrl = `${url}img/products/${this.props.data.image_url}`;
         return (
             <div className="card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2">
-                <img className="card-img-top product-image" src={image_url} alt={this.props.data.name}/>
+                <img className="card-img-top product-image" src={imageUrl} alt={this.props.data.name}/>
                 <div className="card-body">
                     <div className="card-title product-price">
                         { this.props.currency=='USD' && '$' + Number(this.props.data.usd_price).toFixed(2) }

@@ -11430,6 +11430,8 @@ a {
   font-size: 15pt;
   text-align: right;
   display: inline;
+  font-family: "Nunito", "sans-serif";
+  font-weight: bold;
 }
 
 .empty-cart {
@@ -11452,6 +11454,8 @@ a {
 
 .subtotal {
   padding-right: 40px;
+  font-family: "Nunito", "sans-serif";
+  font-weight: bold;
 }
 
 .order-form {

@@ -49,7 +49,8 @@ class Home extends Component {
     hideCheckout() {
         this.setState({
             showCheckout: false
-        })
+        });
+        this.refs.products.updateAmounts();
     }
 
     goShop() {
@@ -101,6 +102,7 @@ class Home extends Component {
                             euroToDollar={this.state.euroToDollar}
                             products={this.state.products}
                             amountChange={this.amountChange}
+                            ref='products'
                         />
                     </div>
                 </div>

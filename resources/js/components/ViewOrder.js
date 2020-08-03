@@ -28,13 +28,14 @@ class ViewOrder extends Component {
     }
 
     render () {
-        let button_mode = this.props.currency == 'USD' ? 'success' : 'info';
+        let buttonMode = this.props.currency == 'USD' ? 'success' : 'info';
         let products = this.props.products;
         products = products.filter(function(product) {
             return product.amount > 0;
         });
+        let currencySymbol = this.props.currency == 'USD' ? '$' : '\u20AC';
         let total = products.reduce((total, product) => total + product.amount * product.usd_price, 0);
-        total = (this.props.currency=='USD' ? total : (total / this.props.euroToDollar)).toFixed(2);
+        total = Number(this.props.currency=='USD' ? total : (total / this.props.euroToDollar)).toFixed(2);
         return (
             <div className="checkout-content currency-switch-container row">
                 <div className="col-12">
@@ -51,20 +52,20 @@ class ViewOrder extends Component {
                         <div className="col-12 col-md-12 empty-cart" onClick={this.props.goShop}>
                             <div>You want more pizza...</div>
                             <div>Please select at least one of them</div>
-                            <img src="img/logo-transp.png" className="no-products-logo" />
+                            <img src="img/logo-transp-no-products.png" className="no-products-logo" />
                         </div>
                     }
                 </div>
                 { total > 0 &&
                     <>
-                        <div className="order-total row col-md-6 col-sm-8">Order total: { total } </div>
+                        <div className="order-total row col-md-6 col-sm-8">Order total: { [currencySymbol, total].join('') } </div>
                         <div className="row col-md-2 col-sm-2 cart-button-container">
                             <CurrencySwitch
                                 currency={this.props.currency}
                                 onChange={this.props.currencyChange}
                                 amountChange={this.props.amountChange}
                             />
-                            <button className={`btn my-2 my-sm-0 btn-${button_mode}`} onClick={this.props.enableForm}>
+                            <button className={`btn my-2 my-sm-0 btn-${buttonMode}`} onClick={this.props.enableForm}>
                                 <img src={"img/checkout.png"} className="checkout-btn"/>
                             </button>
                         </div>

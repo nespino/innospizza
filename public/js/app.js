@@ -84354,6 +84354,7 @@ var Home = /*#__PURE__*/function (_Component) {
       this.setState({
         showCheckout: false
       });
+      this.refs.products.updateAmounts();
     }
   }, {
     key: "goShop",
@@ -84412,7 +84413,8 @@ var Home = /*#__PURE__*/function (_Component) {
         currency: this.state.currency,
         euroToDollar: this.state.euroToDollar,
         products: this.state.products,
-        amountChange: this.amountChange
+        amountChange: this.amountChange,
+        ref: "products"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Checkout__WEBPACK_IMPORTED_MODULE_6__["default"], {
         showCheckout: this.state.showCheckout,
         hideCheckout: this.hideCheckout,
@@ -84820,16 +84822,25 @@ var Product = /*#__PURE__*/function (_Component) {
       }
     }
   }, {
+    key: "updateAmount",
+    value: function updateAmount() {
+      console.log('product si');
+      console.log(this.props.data.amount);
+      this.setState({
+        animationAmount: 99
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var image_url = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_3__["default"], "img/products/").concat(this.props.data.image_url);
+      var imageUrl = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_3__["default"], "img/products/").concat(this.props.data.image_url);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card product-card text-center col-12 col-sm-12 col-md-6 col-xg-3 col-xl-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "card-img-top product-image",
-        src: image_url,
+        src: imageUrl,
         alt: this.props.data.name
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
@@ -84930,6 +84941,12 @@ var Products = /*#__PURE__*/function (_Component) {
       this.props.amountChange(which, -1);
     }
   }, {
+    key: "updateAmounts",
+    value: function updateAmounts() {
+      this.refs.product.updateAmount();
+      console.log('products si');
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -84951,7 +84968,8 @@ var Products = /*#__PURE__*/function (_Component) {
           currency: _this2.props.currency,
           euroToDollar: _this2.props.euroToDollar,
           addItem: _this2.addItem,
-          firstProduct: firstProduct == product.id
+          firstProduct: firstProduct == product.id,
+          ref: "product"
         });
       }));
     }
@@ -85046,15 +85064,16 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
+      var buttonMode = this.props.currency == 'USD' ? 'success' : 'info';
       var products = this.props.products;
       products = products.filter(function (product) {
         return product.amount > 0;
       });
+      var currencySymbol = this.props.currency == 'USD' ? '$' : "\u20AC";
       var total = products.reduce(function (total, product) {
         return total + product.amount * product.usd_price;
       }, 0);
-      total = (this.props.currency == 'USD' ? total : total / this.props.euroToDollar).toFixed(2);
+      total = Number(this.props.currency == 'USD' ? total : total / this.props.euroToDollar).toFixed(2);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-content currency-switch-container row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85071,18 +85090,18 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
         className: "col-12 col-md-12 empty-cart",
         onClick: this.props.goShop
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You want more pizza..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Please select at least one of them"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/logo-transp.png",
+        src: "img/logo-transp-no-products.png",
         className: "no-products-logo"
       }))), total > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "order-total row col-md-6 col-sm-8"
-      }, "Order total: ", total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Order total: ", [currencySymbol, total].join(''), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-2 col-sm-2 cart-button-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currency: this.props.currency,
         onChange: this.props.currencyChange,
         amountChange: this.props.amountChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn my-2 my-sm-0 btn-".concat(button_mode),
+        className: "btn my-2 my-sm-0 btn-".concat(buttonMode),
         onClick: this.props.enableForm
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/checkout.png",
@@ -85264,13 +85283,14 @@ var Checkout = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var price = this.props.currency == 'USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDollar).toFixed(2);
-      var image_url = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_2__["default"], "img/products/").concat(this.props.data.image_url);
+      var currencySimbol = this.props.currency == 'USD' ? '$' : "\u20AC";
+      var imageUrl = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_2__["default"], "img/products/").concat(this.props.data.image_url);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row order-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4 col-md-2 col-lg-3 col-xg-2 order-list-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: image_url
+        src: imageUrl
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-6 col-md-4 col-lg-7 col-xg-8 text-left product-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85291,11 +85311,11 @@ var Checkout = /*#__PURE__*/function (_Component) {
         }
       }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
-      }, "Price: ", Number(price).toFixed(2), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Price: ", [currencySimbol, Number(price).toFixed(2)].join(''), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
       }, "Amount: ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
-      }, "Subtotal: ", Number(this.props.data.amount * price).toFixed(2), " "))));
+      }, "Subtotal: ", [currencySimbol, Number(this.props.data.amount * price).toFixed(2)].join(''), " "))));
     }
   }]);
 
