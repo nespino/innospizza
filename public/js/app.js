@@ -84188,7 +84188,8 @@ var Checkout = /*#__PURE__*/function (_Component) {
         subtotal: subtotal
       }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currency: this.props.currency,
-        subtotal: subtotal
+        subtotal: subtotal,
+        products: this.props.products
       })));
     }
   }]);
@@ -84587,16 +84588,30 @@ var validate = function validate(values) {
 };
 
 var OrderForm = function OrderForm(props) {
+  var orderList = props.products.filter(function (product) {
+    return product.amount > 0;
+  }).map(function (product) {
+    return {
+      "id": product.id,
+      "amount": product.amount
+    };
+  });
   var formik = Object(formik__WEBPACK_IMPORTED_MODULE_1__["useFormik"])({
     initialValues: {
       firstName: '',
       lastName: '',
       phone: '',
-      email: ''
+      email: '',
+      address: '',
+      orderList: orderList
     },
     validate: validate,
+    handleSubmit: function handleSubmit(values) {
+      alert('asd');
+    },
     onSubmit: function onSubmit(values) {
-      alert(JSON.stringify(values, null, 2));
+      var finalMessage = 'Your order has been received! \n\n' + JSON.stringify(values, null, 2);
+      alert(finalMessage);
     },
     isInitialValid: false
   });

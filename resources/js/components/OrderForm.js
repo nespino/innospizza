@@ -36,16 +36,28 @@ const validate = values => {
 };
 
 const OrderForm = (props) => {
+    const orderList = props.products.filter(function(product) {
+        return product.amount > 0;
+    }).map(function(product) {
+        return {"id": product.id, "amount": product.amount};
+    });
+
     const formik = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
             phone: '',
             email: '',
+            address: '',
+            orderList: orderList
         },
         validate,
+        handleSubmit: values => {
+            alert('asd');
+        },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            let finalMessage = 'Your order has been received! \n\n' + JSON.stringify(values, null, 2);
+            alert(finalMessage);
         },
         isInitialValid: false,
     });

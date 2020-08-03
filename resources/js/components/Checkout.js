@@ -54,7 +54,7 @@ class Checkout extends Component {
                                 subtotal={subtotal}/>
                         }
                         { this.state.showForm &&
-                             <OrderForm currency={this.props.currency} subtotal={subtotal} />
+                             <OrderForm currency={this.props.currency} subtotal={subtotal} products={this.props.products} />
                         }
                     </ReactModal>
                 }
