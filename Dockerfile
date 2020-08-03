@@ -64,4 +64,7 @@ USER www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
+# Set working directory (May need to be commented for production)
+WORKDIR /var/www
+
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
