@@ -65,6 +65,6 @@ USER www
 EXPOSE 9000
 
 # Set working directory (Needs to be commented for production)
-#WORKDIR /var/www
+# WORKDIR /var/www
 
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
