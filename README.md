@@ -65,3 +65,5 @@ docker-compose restart app
 - 7th night: 1hr Image tweak. Visual details
 - 7th night: 2hr Better deployment. Code clean
 - 7th night: 2hr Order form with responsiveness
+
+Total time: 62hs
