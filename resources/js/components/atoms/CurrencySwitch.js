@@ -34,7 +34,7 @@ class CurrencySwitch extends Component {
                 <div className="currency-switch-container">
                     <Switch
                         onChange={this.handleChange}
-                        checked={this.state.checked}
+                        checked={this.props.currency == 'USD'}
                         uncheckedIcon={euroIcon}
                         checkedIcon={usdIcon}
                         width={80}
