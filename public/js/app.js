@@ -84354,7 +84354,6 @@ var Home = /*#__PURE__*/function (_Component) {
       this.setState({
         showCheckout: false
       });
-      this.refs.products.updateAmounts();
     }
   }, {
     key: "goShop",
@@ -84779,20 +84778,22 @@ var Product = /*#__PURE__*/function (_Component) {
   _createClass(Product, [{
     key: "addItem",
     value: function addItem(data, e) {
-      if (this.props.data.amount == 0) {
-        this.setState({
-          AnimatedAmountDiv: AnimatedAmountIn
-        });
-      }
+      if (!this.props.data.amount || this.props.data.amount < 255) {
+        if (this.props.data.amount == 0) {
+          this.setState({
+            AnimatedAmountDiv: AnimatedAmountIn
+          });
+        }
 
-      this.props.addItem(data, e);
-      this.setState({
-        showAmount: true,
-        animationAmount: this.props.data.amount
-      });
-      var that = this;
-      this.popSound.play();
-      this.popSound = new Audio(_sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__["default"]);
+        this.props.amountChange(data, 1);
+        this.setState({
+          showAmount: true,
+          animationAmount: this.props.data.amount
+        });
+        var that = this;
+        this.popSound.play();
+        this.popSound = new Audio(_sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__["default"]);
+      }
     }
   }, {
     key: "removeItem",
@@ -84816,7 +84817,7 @@ var Product = /*#__PURE__*/function (_Component) {
             lockAmountChange: false
           });
         }, 400);
-        this.props.removeItem(data, e);
+        this.props.amountChange(data, -1);
         this.discardSound.play();
         this.discardSound = new Audio(_sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__["default"]);
       }
@@ -84841,7 +84842,7 @@ var Product = /*#__PURE__*/function (_Component) {
         className: "card-text-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-text product-description"
-      }, this.props.data.description)), this.state.showAmount && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(this.state.AnimatedAmountDiv, {
+      }, this.props.data.description)), this.state.showAmount && (this.state.lockAmountChange || this.props.data.amount > 0) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(this.state.AnimatedAmountDiv, {
         className: "product-items-counter hvr-grow-shadow",
         onClick: function onClick(e) {
           return _this2.removeItem(_this2.props.data, e);
@@ -84916,27 +84917,10 @@ var Products = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {};
-    _this.addItem = _this.addItem.bind(_assertThisInitialized(_this));
-    _this.removeItem = _this.removeItem.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Products, [{
-    key: "addItem",
-    value: function addItem(which) {
-      this.props.amountChange(which, 1);
-    }
-  }, {
-    key: "removeItem",
-    value: function removeItem(which) {
-      this.props.amountChange(which, -1);
-    }
-  }, {
-    key: "updateAmounts",
-    value: function updateAmounts() {
-      this.refs.product.updateAmount();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -84954,10 +84938,9 @@ var Products = /*#__PURE__*/function (_Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Product__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: product.id,
           data: product,
-          removeItem: _this2.removeItem,
+          amountChange: _this2.props.amountChange,
           currency: _this2.props.currency,
           euroToDollar: _this2.props.euroToDollar,
-          addItem: _this2.addItem,
           firstProduct: firstProduct == product.id
         });
       }));
@@ -85073,7 +85056,8 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
           data: product,
           removeItems: _this2.removeItems,
           currency: _this2.props.currency,
-          euroToDollar: _this2.props.euroToDollar
+          euroToDollar: _this2.props.euroToDollar,
+          amountChange: _this2.props.amountChange
         });
       }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-12 empty-cart",
@@ -85223,7 +85207,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _url_url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../url/url */ "./resources/js/url/url.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _url_url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../url/url */ "./resources/js/url/url.js");
+/* harmony import */ var _sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../sounds/pop.mp3 */ "./resources/sounds/pop.mp3");
+/* harmony import */ var _sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../sounds/discard.mp3 */ "./resources/sounds/discard.mp3");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85250,6 +85237,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
 var Checkout = /*#__PURE__*/function (_Component) {
   _inherits(Checkout, _Component);
 
@@ -85262,26 +85252,45 @@ var Checkout = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {};
-    _this.amountChange = _this.props.amountChange;
+    _this.popSound = new Audio(_sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__["default"]);
+    _this.discardSound = new Audio(_sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__["default"]);
     return _this;
   }
 
   _createClass(Checkout, [{
+    key: "addItem",
+    value: function addItem(data, e) {
+      if (this.props.data.amount < 255) {
+        this.props.amountChange(data, 1);
+        this.popSound.play();
+        this.popSound = new Audio(_sounds_pop_mp3__WEBPACK_IMPORTED_MODULE_4__["default"]);
+      }
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem(data, e) {
+      if (this.props.data.amount > 0) {
+        this.props.amountChange(data, -1);
+        this.discardSound.play();
+        this.discardSound = new Audio(_sounds_discard_mp3__WEBPACK_IMPORTED_MODULE_5__["default"]);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       var price = this.props.currency == 'USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDollar).toFixed(2);
       var currencySimbol = this.props.currency == 'USD' ? '$' : "\u20AC";
-      var imageUrl = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_2__["default"], "img/products/").concat(this.props.data.image_url);
+      var imageUrl = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_3__["default"], "img/products/").concat(this.props.data.image_url);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row order-list"
+        className: "row order-list-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-4 col-md-2 col-lg-3 col-xg-2 order-list-img"
+        className: "col-sm-4 col-md-3 col-lg-2 col-xg-2 order-list-item-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: imageUrl
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-6 col-md-4 col-lg-7 col-xg-8 text-left product-text"
+        className: "col-sm-8 col-md-5 col-lg-7 col-xg-8 text-left product-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -85289,22 +85298,24 @@ var Checkout = /*#__PURE__*/function (_Component) {
       }, this.props.data.name), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.data.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-sm-2 col-md-4 col-lg-2 col-xg-2 subtotal"
+        className: "col-sm-6 col-md-4 col-lg-3 col-xg-2 item-subtotal"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "remove-items-container"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "img/x.png",
-        className: "remove-items",
+        className: "col-8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Price: ", [currencySimbol, Number(price).toFixed(2)].join(''), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Amount: ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Subtotal: ", [currencySimbol, Number(this.props.data.amount * price).toFixed(2)].join(''), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "change-product-amount-container col-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cart-add-item hvr-grow-shadow no-select",
         onClick: function onClick(e) {
-          return _this2.props.removeItems(_this2.props.data, e);
-        }
-      }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: ""
-      }, "Price: ", [currencySimbol, Number(price).toFixed(2)].join(''), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: ""
-      }, "Amount: ", this.props.data.amount, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: ""
-      }, "Subtotal: ", [currencySimbol, Number(this.props.data.amount * price).toFixed(2)].join(''), " "))));
+          return _this2.addItem(_this2.props.data, e);
+        },
+        title: "Click to add one"
+      }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cart-remove-item hvr-grow-shadow no-select",
+        onClick: function onClick(e) {
+          return _this2.removeItem(_this2.props.data, e);
+        },
+        title: "Click to remove one"
+      }, "-")))));
     }
   }]);
 

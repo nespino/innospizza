@@ -7,21 +7,6 @@ class Products extends Component {
         super(props);
         this.state = {
         };
-        this.addItem = this.addItem.bind(this);
-        this.removeItem = this.removeItem.bind(this);
-    }
-
-    addItem(which) {
-        this.props.amountChange(which, 1);
-    }
-
-    removeItem(which) {
-        this.props.amountChange(which, -1);
-    }
-
-
-    updateAmounts() {
-        this.refs.product.updateAmount();
     }
 
     render() {
@@ -37,10 +22,9 @@ class Products extends Component {
                     <Product
                         key={product.id}
                         data={product}
-                        removeItem={this.removeItem}
+                        amountChange={this.props.amountChange}
                         currency={this.props.currency}
                         euroToDollar={this.props.euroToDollar}
-                        addItem={this.addItem}
                         firstProduct={firstProduct == product.id}
                     />)}
             </div>

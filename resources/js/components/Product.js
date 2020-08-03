@@ -28,20 +28,22 @@ class Product extends Component {
     }
 
     addItem(data, e) {
-        if (this.props.data.amount == 0) {
+        if (!this.props.data.amount || this.props.data.amount < 255) {
+            if (this.props.data.amount == 0) {
+                this.setState({
+                    AnimatedAmountDiv: AnimatedAmountIn
+                })
+            }
+            this.props.amountChange(data, 1);
             this.setState({
-                AnimatedAmountDiv: AnimatedAmountIn
+                showAmount: true,
+                animationAmount: this.props.data.amount,
             })
-        }
-        this.props.addItem(data, e);
-        this.setState({
-            showAmount: true,
-            animationAmount: this.props.data.amount,
-        })
-        let that = this;
+            let that = this;
 
-        this.popSound.play();
-        this.popSound = new Audio(popSound);
+            this.popSound.play();
+            this.popSound = new Audio(popSound);
+        }
     }
 
     removeItem(data, e) {
@@ -64,7 +66,7 @@ class Product extends Component {
                 })
             }, 400);
 
-            this.props.removeItem(data, e);
+            this.props.amountChange(data, -1);
             this.discardSound.play();
             this.discardSound = new Audio(discardSound);
         }
@@ -85,7 +87,7 @@ class Product extends Component {
                             {this.props.data.description}
                         </div>
                     </div>
-                    {this.state.showAmount &&
+                    {this.state.showAmount && (this.state.lockAmountChange || this.props.data.amount > 0) &&
                             <this.state.AnimatedAmountDiv className="product-items-counter hvr-grow-shadow" onClick={(e) => this.removeItem(this.props.data, e)}
                                 title="Click to remove from your order">{this.state.lockAmountChange ? this.state.animationAmount : this.props.data.amount }</this.state.AnimatedAmountDiv>
                     }

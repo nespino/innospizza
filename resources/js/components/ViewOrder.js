@@ -47,6 +47,7 @@ class ViewOrder extends Component {
                         removeItems={this.removeItems}
                         currency={this.props.currency}
                         euroToDollar={this.props.euroToDollar}
+                        amountChange={this.props.amountChange}
                     />)}
                     {total == 0 &&
                         <div className="col-12 col-md-12 empty-cart" onClick={this.props.goShop}>

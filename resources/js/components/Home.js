@@ -50,7 +50,6 @@ class Home extends Component {
         this.setState({
             showCheckout: false
         });
-        this.refs.products.updateAmounts();
     }
 
     goShop() {
