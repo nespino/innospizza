@@ -84822,15 +84822,6 @@ var Product = /*#__PURE__*/function (_Component) {
       }
     }
   }, {
-    key: "updateAmount",
-    value: function updateAmount() {
-      console.log('product si');
-      console.log(this.props.data.amount);
-      this.setState({
-        animationAmount: 99
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -84856,7 +84847,7 @@ var Product = /*#__PURE__*/function (_Component) {
           return _this2.removeItem(_this2.props.data, e);
         },
         title: "Click to remove from your order"
-      }, this.state.animationAmount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.lockAmountChange ? this.state.animationAmount : this.props.data.amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-bottom",
         onClick: function onClick(e) {
           return _this2.addItem(_this2.props.data, e);
@@ -84944,7 +84935,6 @@ var Products = /*#__PURE__*/function (_Component) {
     key: "updateAmounts",
     value: function updateAmounts() {
       this.refs.product.updateAmount();
-      console.log('products si');
     }
   }, {
     key: "render",
@@ -84968,8 +84958,7 @@ var Products = /*#__PURE__*/function (_Component) {
           currency: _this2.props.currency,
           euroToDollar: _this2.props.euroToDollar,
           addItem: _this2.addItem,
-          firstProduct: firstProduct == product.id,
-          ref: "product"
+          firstProduct: firstProduct == product.id
         });
       }));
     }
@@ -85094,7 +85083,7 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
         className: "no-products-logo"
       }))), total > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "order-total row col-md-6 col-sm-8"
-      }, "Order total: ", [currencySymbol, total].join(''), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Order subtotal: ", currencySymbol, total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row col-md-2 col-sm-2 cart-button-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currency: this.props.currency,

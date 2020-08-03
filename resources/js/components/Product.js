@@ -70,14 +70,6 @@ class Product extends Component {
         }
     }
 
-    updateAmount() {
-        console.log('product si');
-        console.log(this.props.data.amount);
-        this.setState({
-            animationAmount: 99
-        })
-    }
-
     render() {
         let imageUrl = `${url}img/products/${this.props.data.image_url}`;
         return (
@@ -95,7 +87,7 @@ class Product extends Component {
                     </div>
                     {this.state.showAmount &&
                             <this.state.AnimatedAmountDiv className="product-items-counter hvr-grow-shadow" onClick={(e) => this.removeItem(this.props.data, e)}
-                                title="Click to remove from your order">{this.state.animationAmount}</this.state.AnimatedAmountDiv>
+                                title="Click to remove from your order">{this.state.lockAmountChange ? this.state.animationAmount : this.props.data.amount }</this.state.AnimatedAmountDiv>
                     }
                 </div>
                 <div className="card-bottom" onClick={(e) => this.addItem(this.props.data, e)} title="Click to order!">

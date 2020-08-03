@@ -19,9 +19,9 @@ class Products extends Component {
         this.props.amountChange(which, -1);
     }
 
+
     updateAmounts() {
         this.refs.product.updateAmount();
-        console.log('products si');
     }
 
     render() {
@@ -42,7 +42,6 @@ class Products extends Component {
                         euroToDollar={this.props.euroToDollar}
                         addItem={this.addItem}
                         firstProduct={firstProduct == product.id}
-                        ref='product'
                     />)}
             </div>
 

@@ -58,7 +58,7 @@ class ViewOrder extends Component {
                 </div>
                 { total > 0 &&
                     <>
-                        <div className="order-total row col-md-6 col-sm-8">Order total: { [currencySymbol, total].join('') } </div>
+                        <div className="order-total row col-md-6 col-sm-8">Order subtotal: { currencySymbol }{ total } </div>
                         <div className="row col-md-2 col-sm-2 cart-button-container">
                             <CurrencySwitch
                                 currency={this.props.currency}
