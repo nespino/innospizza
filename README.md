@@ -62,7 +62,7 @@ docker-compose restart app
 - 7th day: 2hr Sound implementation.
 - 7th day: 1hr Order list design
 - 7th day: 4hr General Responsivenes
-
+- 7th night: 1hr Image tweak. Visual details
 
 
 
