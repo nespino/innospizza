@@ -60,7 +60,8 @@ docker-compose restart app
 - 6th day: 5hr Cart and checkout form.
 - 6th night: 4hr React motion and animation studies. Product card animation. Scroll.
 - 7th day: 2hr Sound implementation.
-
+- 7th day: 1hr Order list design
+- 7th day: 4hr General Responsivenes
 
 
 
