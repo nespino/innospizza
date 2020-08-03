@@ -31,7 +31,7 @@ class CurrencySwitch extends Component {
     render() {
         return (
             <div className="">
-                <div className="col-4 currency-switch-container">
+                <div className="currency-switch-container">
                     <Switch
                         onChange={this.handleChange}
                         checked={this.state.checked}

@@ -37,7 +37,7 @@ class ViewOrder extends Component {
         let total = products.reduce((total, product) => total + product.amount * product.usd_price, 0);
         total = Number(this.props.currency=='USD' ? total : (total / this.props.euroToDollar)).toFixed(2);
         return (
-            <div className="checkout-content currency-switch-container row">
+            <div className="checkout-content row">
                 <div className="col-12">
                     <h2>Your order</h2>
                     {products.map(product =>
@@ -58,9 +58,9 @@ class ViewOrder extends Component {
                     }
                 </div>
                 { total > 0 &&
-                    <>
-                        <div className="order-total row col-md-6 col-sm-8">Order subtotal: { currencySymbol }{ total } </div>
-                        <div className="row col-md-2 col-sm-2 cart-button-container">
+                    <div className="currency-switch-container col-12">
+                        <div className="order-total row col-md-12 col-sm-8">Order subtotal: { currencySymbol }{ total } </div>
+                        <div className="col-12 col-md-12 col-sm-12 cart-button-container">
                             <CurrencySwitch
                                 currency={this.props.currency}
                                 onChange={this.props.currencyChange}
@@ -70,7 +70,7 @@ class ViewOrder extends Component {
                                 <img src={"img/checkout.png"} className="checkout-btn"/>
                             </button>
                         </div>
-                    </>
+                    </div>
                 }
             </div>
         )

@@ -47,7 +47,7 @@ class Checkout extends Component {
                         </div>
                         <div className="col-sm-8 col-md-5 col-lg-7 col-xg-8 text-left product-text">
                             <div className=""> <span className="product-name">{ this.props.data.name }</span> </div>
-                            <div className=""> <strong>{ this.props.data.description }</strong></div>
+                            <div className="product-description"> <strong>{ this.props.data.description }</strong></div>
                         </div>
                         <div className="col-sm-6 col-md-4 col-lg-3 col-xg-2 item-subtotal">
                             <div className="col-8">
