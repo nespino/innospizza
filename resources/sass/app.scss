@@ -1,6 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Michroma');
+@import url('https://fonts.googleapis.com/css?family=Denk+One');
 
 
 // Variables
@@ -88,6 +89,14 @@ footer a:hover {
 .product-card .product-image {
   width: 95%;
   margin: auto;
+}
+
+.product-card div.product-name, .order-list-item span.product-name {
+  font-family: 'Denk one', 'sans-serif';
+  font-size: 16pt;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #658d1b;
 }
 
 .product-card .price {
@@ -229,7 +238,7 @@ footer a:hover {
   }
 
   .checkout-content div.order-list-item {
-    padding: 30px 0px;
+    padding: 30px 4px;
   }
 
   .empty-cart img {
@@ -561,6 +570,7 @@ a {
   border-radius: 5px;
   border: 1px solid #6f0f0f;
   margin: 30px 0;
+  padding: 10px 4px;
 }
 
 .card-bottom {
@@ -578,6 +588,10 @@ a {
   padding-top: 22px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.card-body {
+  padding-top: 4px;
 }
 
 .card-bottom span {

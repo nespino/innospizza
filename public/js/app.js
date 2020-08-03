@@ -84835,6 +84835,8 @@ var Product = /*#__PURE__*/function (_Component) {
         src: imageUrl,
         alt: this.props.data.name
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-name"
+      }, this.props.data.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-title product-price"
