@@ -20,8 +20,6 @@ mix.extend("addWebpackLoaders", (webpackConfig, loaderRules) => {
     });
 });
 
-
-
 mix.addWebpackLoaders([
     {
         test: /\.(ogg|mp3|wav|mpe?g)$/i,
