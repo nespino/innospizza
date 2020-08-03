@@ -35,7 +35,7 @@ const validate = values => {
     return errors;
 };
 
-const OrderForm = () => {
+const OrderForm = (props) => {
     const formik = useFormik({
         initialValues: {
             firstName: '',
@@ -46,13 +46,18 @@ const OrderForm = () => {
         validate,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
-        }
+        },
+        isInitialValid: false,
     });
 
+    let buttonMode = props.currency == 'USD' ? 'success' : 'info';
+    let currencySymbol = props.currency == 'USD' ? '$' : '\u20AC';
+    let shippingFee = Number(3).toFixed(2);
+    let orderTotal = Number(parseFloat(props.subtotal) + parseFloat(shippingFee)).toFixed(2);
     return (
         <form className="order-form container" onSubmit={formik.handleSubmit}>
             <div className="row">
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="firstName">First Name *</label>
                 <input
                     id="firstName"
                     name="firstName"
@@ -66,7 +71,7 @@ const OrderForm = () => {
                 ) : null}
             </div>
             <div className="row">
-                <label htmlFor="lastName">Last Name</label>
+                <label htmlFor="lastName">Last Name *</label>
                 <input
                     id="lastName"
                     name="lastName"
@@ -80,7 +85,7 @@ const OrderForm = () => {
                 ) : null}
             </div>
             <div className="row">
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="phone">Phone *</label>
                 <input
                     id="phone"
                     name="phone"
@@ -108,7 +113,7 @@ const OrderForm = () => {
                 ) : null}
             </div>
             <div className="row">
-                <label htmlFor="address">Delivery Address</label>
+                <label htmlFor="address">Delivery Address *</label>
                     <input
                     id="address"
                     name="address"
@@ -121,8 +126,14 @@ const OrderForm = () => {
                 <div>{formik.errors.address}</div>
                 ) : null}
             </div>
+            <div className="row flex-row-reverse">(*) Required fields </div>
+            <div className="row order-total">
+                <div className="row">Subtotal: { currencySymbol }<span>{props.subtotal}</span></div>
+                <div className="row">Shipping fee: { currencySymbol }<span id="shipping_fee">{shippingFee}</span></div>
+                <div className="row">Order total: { currencySymbol }<span id="order_total">{orderTotal}</span></div>
+            </div>
             <div className="row">
-                <button type="submit" disabled={ !formik.isValid }>Submit</button>
+                <button type="submit" className={"btn btn-" + buttonMode} id="process-order-btn" disabled={ !formik.isValid }>Process payment</button>
             </div>
         </form>
     );

@@ -38,6 +38,8 @@ class Checkout extends Component {
 
     render () {
         let showCheckout = this.props.showCheckout;
+        let subtotal = this.props.products.reduce((subtotal, product) => subtotal + (product.amount || 0) * product.usd_price, 0);
+        subtotal = Number(this.props.currency=='USD' ? subtotal : (subtotal / this.props.euroToDollar)).toFixed(2);
         return (
             <div className="checkout-modal" >
                 { showCheckout &&
@@ -48,10 +50,11 @@ class Checkout extends Component {
                             <ViewOrder products={this.props.products} currency={this.props.currency}
                                 euroToDollar={this.props.euroToDollar} enableForm={this.enableForm}
                                 currencyChange={this.props.currencyChange} hideCheckout={this.hideCheckout}
-                                goShop={this.props.goShop} amountChange={this.props.amountChange}/>
+                                goShop={this.props.goShop} amountChange={this.props.amountChange}
+                                subtotal={subtotal}/>
                         }
                         { this.state.showForm &&
-                             <OrderForm />
+                             <OrderForm currency={this.props.currency} subtotal={subtotal} />
                         }
                     </ReactModal>
                 }
