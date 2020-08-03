@@ -89,11 +89,11 @@ class Product extends Component {
                         </div>
                     </div>
                     {this.state.showAmount && (this.state.lockAmountChange || this.props.data.amount > 0) &&
-                            <this.state.AnimatedAmountDiv className="product-items-counter hvr-grow-shadow" onClick={(e) => this.removeItem(this.props.data, e)}
+                            <this.state.AnimatedAmountDiv className="product-items-counter hvr-grow-shadow no-select" onClick={(e) => this.removeItem(this.props.data, e)}
                                 title="Click to remove from your order">{this.state.lockAmountChange ? this.state.animationAmount : this.props.data.amount }</this.state.AnimatedAmountDiv>
                     }
                 </div>
-                <div className="card-bottom" onClick={(e) => this.addItem(this.props.data, e)} title="Click to order!">
+                <div className="card-bottom no-select" onClick={(e) => this.addItem(this.props.data, e)} title="Click to order!">
                     <span>Add to cart</span>
                 </div>
                 { this.props.firstProduct &&

@@ -13,6 +13,9 @@ class ViewOrder extends Component {
         };
         this.removeItems = this.removeItems.bind(this);
         this.enableForm = this.enableForm.bind(this);
+        this.products = this.props.products.filter(function(product) {
+            return product.amount > 0;
+        });
         ReactModal.setAppElement('body');
     }
 
@@ -29,11 +32,8 @@ class ViewOrder extends Component {
 
     render () {
         let buttonMode = this.props.currency == 'USD' ? 'success' : 'info';
-        let products = this.props.products;
-        products = products.filter(function(product) {
-            return product.amount > 0;
-        });
         let currencySymbol = this.props.currency == 'USD' ? '$' : '\u20AC';
+        let products = this.products;
         let total = products.reduce((total, product) => total + product.amount * product.usd_price, 0);
         total = Number(this.props.currency=='USD' ? total : (total / this.props.euroToDollar)).toFixed(2);
         return (
