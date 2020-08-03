@@ -84161,6 +84161,10 @@ var Checkout = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var showCheckout = this.props.showCheckout;
+      var subtotal = this.props.products.reduce(function (subtotal, product) {
+        return subtotal + (product.amount || 0) * product.usd_price;
+      }, 0);
+      subtotal = Number(this.props.currency == 'USD' ? subtotal : subtotal / this.props.euroToDollar).toFixed(2);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-modal"
       }, showCheckout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -84180,8 +84184,12 @@ var Checkout = /*#__PURE__*/function (_Component) {
         currencyChange: this.props.currencyChange,
         hideCheckout: this.hideCheckout,
         goShop: this.props.goShop,
-        amountChange: this.props.amountChange
-      }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+        amountChange: this.props.amountChange,
+        subtotal: subtotal
+      }), this.state.showForm && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OrderForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        currency: this.props.currency,
+        subtotal: subtotal
+      })));
     }
   }]);
 
@@ -84578,7 +84586,7 @@ var validate = function validate(values) {
   return errors;
 };
 
-var OrderForm = function OrderForm() {
+var OrderForm = function OrderForm(props) {
   var formik = Object(formik__WEBPACK_IMPORTED_MODULE_1__["useFormik"])({
     initialValues: {
       firstName: '',
@@ -84589,8 +84597,13 @@ var OrderForm = function OrderForm() {
     validate: validate,
     onSubmit: function onSubmit(values) {
       alert(JSON.stringify(values, null, 2));
-    }
+    },
+    isInitialValid: false
   });
+  var buttonMode = props.currency == 'USD' ? 'success' : 'info';
+  var currencySymbol = props.currency == 'USD' ? '$' : "\u20AC";
+  var shippingFee = Number(3).toFixed(2);
+  var orderTotal = Number(parseFloat(props.subtotal) + parseFloat(shippingFee)).toFixed(2);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "order-form container",
     onSubmit: formik.handleSubmit
@@ -84598,7 +84611,7 @@ var OrderForm = function OrderForm() {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "firstName"
-  }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "First Name *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "firstName",
     name: "firstName",
     type: "text",
@@ -84609,7 +84622,7 @@ var OrderForm = function OrderForm() {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "lastName"
-  }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "Last Name *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "lastName",
     name: "lastName",
     type: "text",
@@ -84620,7 +84633,7 @@ var OrderForm = function OrderForm() {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "phone"
-  }, "Phone"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "Phone *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "phone",
     name: "phone",
     type: "text",
@@ -84642,7 +84655,7 @@ var OrderForm = function OrderForm() {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "address"
-  }, "Delivery Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "Delivery Address *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     id: "address",
     name: "address",
     type: "text",
@@ -84650,11 +84663,27 @@ var OrderForm = function OrderForm() {
     onBlur: formik.handleBlur,
     value: formik.values.address
   }), formik.touched.address && formik.errors.address ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, formik.errors.address) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row flex-row-reverse"
+  }, "(*) Required fields "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row order-total"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, "Subtotal: ", currencySymbol, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, props.subtotal)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, "Shipping fee: ", currencySymbol, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: "shipping_fee"
+  }, shippingFee)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, "Order total: ", currencySymbol, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: "order_total"
+  }, orderTotal))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
+    className: "btn btn-" + buttonMode,
+    id: "process-order-btn",
     disabled: !formik.isValid
-  }, "Submit")));
+  }, "Process payment")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (OrderForm);
@@ -84845,13 +84874,13 @@ var Product = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-text product-description"
       }, this.props.data.description)), this.state.showAmount && (this.state.lockAmountChange || this.props.data.amount > 0) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(this.state.AnimatedAmountDiv, {
-        className: "product-items-counter hvr-grow-shadow",
+        className: "product-items-counter hvr-grow-shadow no-select",
         onClick: function onClick(e) {
           return _this2.removeItem(_this2.props.data, e);
         },
         title: "Click to remove from your order"
       }, this.state.lockAmountChange ? this.state.animationAmount : this.props.data.amount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-bottom",
+        className: "card-bottom no-select",
         onClick: function onClick(e) {
           return _this2.addItem(_this2.props.data, e);
         },
@@ -85016,6 +85045,9 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
     };
     _this.removeItems = _this.removeItems.bind(_assertThisInitialized(_this));
     _this.enableForm = _this.enableForm.bind(_assertThisInitialized(_this));
+    _this.products = _this.props.products.filter(function (product) {
+      return product.amount > 0;
+    });
     react_modal__WEBPACK_IMPORTED_MODULE_1___default.a.setAppElement('body');
     return _this;
   }
@@ -85039,15 +85071,9 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var buttonMode = this.props.currency == 'USD' ? 'success' : 'info';
-      var products = this.props.products;
-      products = products.filter(function (product) {
-        return product.amount > 0;
-      });
       var currencySymbol = this.props.currency == 'USD' ? '$' : "\u20AC";
-      var total = products.reduce(function (total, product) {
-        return total + product.amount * product.usd_price;
-      }, 0);
-      total = Number(this.props.currency == 'USD' ? total : total / this.props.euroToDollar).toFixed(2);
+      var products = this.products;
+      var subtotal = this.props.subtotal;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "checkout-content row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85061,17 +85087,17 @@ var ViewOrder = /*#__PURE__*/function (_Component) {
           euroToDollar: _this2.props.euroToDollar,
           amountChange: _this2.props.amountChange
         });
-      }), total == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), subtotal == 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-12 empty-cart",
         onClick: this.props.goShop
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You want more pizza..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Please select at least one of them"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/logo-transp-no-products.png",
         className: "no-products-logo"
-      }))), total > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), subtotal > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "currency-switch-container col-12"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "order-total row col-md-12 col-sm-8"
-      }, "Order subtotal: ", currencySymbol, total, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "order-subtotal row col-md-12 col-sm-8"
+      }, "Order subtotal: ", currencySymbol, subtotal, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-md-12 col-sm-12 cart-button-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currency: this.props.currency,
@@ -85182,7 +85208,7 @@ var CurrencySwitch = /*#__PURE__*/function (_Component) {
         className: "currency-switch-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_switch__WEBPACK_IMPORTED_MODULE_1___default.a, {
         onChange: this.handleChange,
-        checked: this.state.checked,
+        checked: this.props.currency == 'USD',
         uncheckedIcon: euroIcon,
         checkedIcon: usdIcon,
         width: 80,
@@ -85287,7 +85313,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
       var price = this.props.currency == 'USD' ? this.props.data.usd_price : (this.props.data.usd_price / this.props.euroToDollar).toFixed(2);
       var currencySimbol = this.props.currency == 'USD' ? '$' : "\u20AC";
       var imageUrl = "".concat(_url_url__WEBPACK_IMPORTED_MODULE_3__["default"], "img/products/").concat(this.props.data.image_url);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null,  true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row order-list-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-4 col-md-3 col-lg-2 col-xg-2 order-list-item-img"
@@ -85339,7 +85365,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var url = '/';
+var url = "/";
 /* harmony default export */ __webpack_exports__["default"] = (url);
 
 /***/ }),

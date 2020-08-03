@@ -11427,6 +11427,7 @@ a {
 .checkout-content {
   text-align: center;
   color: #6f0f0f;
+  padding-bottom: 30px;
 }
 
 .checkout-content > table {
@@ -11516,7 +11517,7 @@ a {
   font-family: "Michroma", "sans-serif";
 }
 
-.order-total {
+.order-subtotal {
   font-size: 15pt;
   text-align: center;
   display: inline;
@@ -11554,19 +11555,25 @@ a {
 
 .order-form .row {
   margin: 20px auto;
-  width: 380px;
+  width: 500px;
   color: #000;
 }
 
 .order-form .row > div {
   margin: 5px 10px;
-  color: #F00;
+  color: #CB0202;
+  font-weight: bold;
 }
 
 .order-form label {
-  width: 100px;
+  width: 160px;
   text-align: right;
   margin: 5px 10px 0px 0px;
+  font-family: "Michroma", "sans-serif";
+}
+
+.order-form input {
+  width: 180px;
 }
 
 .navbar {
@@ -11577,5 +11584,51 @@ a {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#ffa50e", endColorstr="#007db9e8",GradientType=0 );
   /* IE6-9 */
+}
+
+#process-order-btn {
+  margin: auto;
+  font-size: 2rem;
+  width: 125px;
+  height: 125px;
+  border-radius: 350px;
+  box-shadow: 1px 2px 5px 0px #14650a !important;
+  line-height: 24px;
+}
+
+.order-form div.order-total .row {
+  font-size: 16pt;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  color: #000;
+}
+
+.order-form .order-total {
+  background-color: whitesmoke;
+  font-family: "Michroma", "sans-serif";
+}
+
+@media screen and (max-width: 632px) {
+  .order-form .row {
+    width: 100%;
+  }
+
+  .order-form input {
+    width: 100%;
+  }
+
+  .order-form label {
+    width: 100%;
+    text-align: left;
+  }
+
+  .order-form div.order-total .row {
+    font-size: 10pt;
+  }
+
+  #process-order-btn {
+    font-size: 13pt;
+  }
 }
 
