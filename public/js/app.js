@@ -84405,6 +84405,15 @@ var Home = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var productsAmount = 0;
+
+      if (this.state.products.length) {
+        productsAmount = this.state.products.filter(function (product) {
+          return product.amount && product.amount > 0;
+        }).length;
+        console.log(productsAmount);
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: "img/background.png",
         alt: "heart-pizza-bg",
@@ -84412,7 +84421,8 @@ var Home = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
         currency: this.state.currency,
         currencyChange: this.currencyChange,
-        showCheckout: this.showCheckout
+        showCheckout: this.showCheckout,
+        productsAmount: productsAmount
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "position-ref container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -84459,6 +84469,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _atoms_CurrencySwitch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./atoms/CurrencySwitch */ "./resources/js/components/atoms/CurrencySwitch.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var react_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-animations */ "./node_modules/react-animations/lib/index.js");
+/* harmony import */ var react_animations__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_animations__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84481,8 +84494,56 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["animation: 0.5s ", ";"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["animation: 1s ", ";"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
+
+
+
+var bounceInAnimation = Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["keyframes"])(_templateObject(), react_animations__WEBPACK_IMPORTED_MODULE_3__["bounceIn"]);
+var flipAnimation = Object(styled_components__WEBPACK_IMPORTED_MODULE_2__["keyframes"])(_templateObject2(), react_animations__WEBPACK_IMPORTED_MODULE_3__["flip"]);
+var AnimatedAmountIn = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject3(), bounceInAnimation);
+var AnimatedAmountOut = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject4(), flipAnimation);
 
 var Navbar = /*#__PURE__*/function (_Component) {
   _inherits(Navbar, _Component);
@@ -84495,14 +84556,16 @@ var Navbar = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Navbar);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      AnimatedAmountDiv: AnimatedAmountIn
+    };
     return _this;
   }
 
   _createClass(Navbar, [{
     key: "render",
     value: function render() {
-      var button_mode = this.props.currency == 'USD' ? 'success' : 'info';
+      var buttonMode = this.props.currency == 'USD' ? 'success' : 'info';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "navbar navbar-light currency-switch-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84521,12 +84584,14 @@ var Navbar = /*#__PURE__*/function (_Component) {
         currency: this.props.currency,
         onChange: this.props.currencyChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn my-2 my-sm-0 btn-".concat(button_mode),
+        className: "btn my-2 my-sm-0 btn-".concat(buttonMode),
         onClick: this.props.showCheckout
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "img/checkout.png",
         className: "checkout-btn"
-      }))));
+      }), this.props.productsAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(this.state.AnimatedAmountDiv, {
+        className: "cart-items-counter hvr-grow-shadow no-select"
+      }, this.props.productsAmount))));
     }
   }]);
 

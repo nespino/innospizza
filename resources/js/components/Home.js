@@ -85,7 +85,11 @@ class Home extends Component {
     }
 
     render() {
-
+        let productsAmount = 0;
+        if (this.state.products.length) {
+            productsAmount = this.state.products.filter((product) => product.amount && product.amount > 0).length;
+            console.log(productsAmount);
+        }
         return (
             <div>
                 <img src='img/background.png' alt="heart-pizza-bg" className="bg" />
@@ -93,6 +97,7 @@ class Home extends Component {
                     currency={this.state.currency}
                     currencyChange={this.currencyChange}
                     showCheckout={this.showCheckout}
+                    productsAmount={productsAmount}
                 />
                 <div className="position-ref container">
                     <div className="justify-content-center">
